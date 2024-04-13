@@ -121,12 +121,15 @@ module.exports.create = async (req, res) => {
 // [POST] /admin/product/create
 module.exports.createPost = async (req, res) => {
 
-    req.body.image = `/uploads/${req.file.filename}`
+    if(req.body.position == ""){
+        const countMovie = await Movie.countDocuments()
+        req.body.position = countMovie + 1
+    }
+
     const movie = new Movie(req.body)
     await movie.save()
 
     res.redirect(`/admin/products`)
-    console.log(req.file);
 }
 
 module.exports.edit = async (req, res) => {
