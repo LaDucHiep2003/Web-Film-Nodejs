@@ -1,0 +1,112 @@
+
+#header
+    .container
+        .content-header
+            .logo
+                p.site-title
+                    a(href='/') Trang Chu
+            .search-firm
+                form#search-form
+                    i.fa-solid.fa-magnifying-glass
+                    input#p(
+                        name='keywork' 
+                        type='text' 
+                        placeholder='Nhan Vao Day De Tim Kiem'
+                        value = keywork
+                    )
+                //- .container-result-search.visible
+                //-     ul.result-search
+                //-         li.result-search-sub Kết quả tìm kiếm :
+
+                //-         .result
+                //-             li
+                //-                 a(href='')
+                //-                     img.result-img(src='' alt='')
+                //-                     .text-result
+                //-                         .result-name 
+                //-                         .result-sub 
+            .more
+                
+                i.fa-regular.fa-circle-user
+                
+                i.fa-solid.fa-bookmark
+                a(href='/login')
+                    i.fa-solid.fa-arrow-right-to-bracket
+            .clear
+        .text-note
+            | Lưu hoặc nhớ ngay link rút gọn 
+            a(href='')  bit.ly/hh3d
+            |để truy cập nhanh
+.navbar-container
+    .container
+        ul#nav
+            li
+                a(href='/')
+                    i.icon-home.fa-solid.fa-house.set-icon-header
+                    |                         Trang Chủ
+            li
+                a(href='')
+                    | Thể Loại
+                    i.fa-solid.fa-caret-down
+                ul.subnav
+                    li
+                        a(href='') Huyền Huyễn
+                    li
+                        a(href='') Xuyên Không
+                    li
+                        a(href='') Trùng Sinh
+                    li
+                        a(href='') Tiên Hiệp
+                    li
+                        a(href='') Cổ Trang
+                    li
+                        a(href='') Hài Hước
+                    li
+                        a(href='') Kiếm Hiệp
+                    li
+                        a(href='') Hiện Đại
+            li
+                a(href='') Phim Lẻ
+            li
+                a(href='')
+                    i.fa-solid.fa-arrows-rotate
+                    |                         Đang Chiếu
+            li
+                a(href='')
+                    i.fa-regular.fa-calendar-xmark
+                    |                         Lịch Chiếu
+            li
+                a(href='')
+                    i.fa-regular.fa-circle-check
+                    |                         Hoàn Thành
+            li
+                a(href='')
+                    i.fa-regular.fa-clock
+                    |                         Sắp Chiếu
+            li
+                a(href='')
+                    i.fa-solid.fa-trophy
+                    |                         Top 10 Hot
+            li
+                a(href='')
+                    i.fa-solid.fa-thumbs-up
+                    |                         Đáng Xem
+            li.width-info-user
+                .container-info-user.visible
+                    .user
+                        img.img-user(src='' alt='')
+                        .name-user
+                        ul
+                            li
+                                a(href='')
+                                    i.fa-solid.fa-user.set-icon-info-user
+                                    | Thông Tin
+                            li
+                                a(href='')
+                                    i.fa-solid.fa-eye.set-icon-info-user
+                                    | Thông báo
+                            li
+                                a(href='/logout')
+                                    i.fa-solid.fa-right-from-bracket.set-icon-info-user
+                                    | Đăng xuất
+            .clear

@@ -1,0 +1,99 @@
+
+extends ../../layouts/default.pug
+
+block main
+  #content
+    .container
+      .x
+        i.fa-solid.fa-angle-left.btn-next-left-firm
+        i.fa-solid.fa-angle-right.btn-next-left-firm
+        .container-firm-hot
+            each item in moviesHot
+                .firm-hot
+                    a(href= `/phim/${item.slug}`)
+                        img.img-firm-hot(src= item.backgound alt='')
+                    a(href=`/phim/${item.slug}`)
+                        .info-firm
+                            .name-img-firm-hot #{item.name}
+                            .sub-name-img-firm-hot #{item.nameOther}
+        .clear
+      .date-time
+        .date.active-date-time
+          p.text-time-line
+            | Mới
+          p.text-time-line-sub
+            | Cập Nhật
+        .date
+          p.text-time-line
+            | Mon
+          p.text-time-line-sub
+            | Thứ Hai
+        .date
+          p.text-time-line
+            | Tue
+          p.text-time-line-sub
+            | Thứ Ba
+        .date
+          p.text-time-line
+            | Wed
+          p.text-time-line-sub
+            | Thứ Tư
+        .date
+          p.text-time-line
+            | Thu
+          p.text-time-line-sub
+            | Thứ Năm
+        .date
+          p.text-time-line
+            | Fri
+          p.text-time-line-sub
+            | Thứ Sáu
+        .date
+          p.text-time-line
+            | Sat
+          p.text-time-line-sub
+            | Thứ Bảy
+        .date
+          p.text-time-line
+            | Sun
+          p.text-time-line-sub
+            | Chủ Nhật
+        .clear
+      .seclection-title
+        span Mới Cập Nhật
+      .container-new-firm.active-disable
+        each item in movies
+            .new-firm
+                a(href=`/phim/${item.slug}`)
+                    img.img-new-firm(src= item.image alt='')
+                    .info-new-firm
+                        .text-info-new-firm
+                            .name-img-new-firm #{item.name}
+                            .sub-name-img-new-firm #{item.nameOther}
+                p Tập #{item.newEp}
+
+
+      .page-btn
+        if(pagination.currentPage > 1)
+          .page
+            i(
+              class = "fa-solid fa-angle-left"
+              button-pagination = pagination.currentPage - 1
+            )
+        
+        - for(var i = 1;i <= 3;i++)
+            div(
+              class = `page ${pagination.currentPage == i ? "active-page" : ""}`
+              button-pagination = i
+            ) #{i}
+        
+        
+        if(pagination.currentPage < pagination.totalPage)
+          .page
+            i(
+              class = "fa-solid fa-chevron-right"
+              button-pagination = pagination.currentPage + 1
+            )
+        
+
+

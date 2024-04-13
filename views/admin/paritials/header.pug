@@ -1,0 +1,68 @@
+
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css")
+
+
+.menu
+  ion-icon(name='menu-outline')
+  ion-icon(name='close-outline')
+.barra-lateral
+  div
+    .nombre-pagina
+      ion-icon#cloud(name='cloud-outline')
+      span Quản Lý Phim
+    a(href="/admin/products") 
+      button.boton
+        <i class="fa-solid fa-film"></i>
+        span PHIM
+  nav.navegacion
+    ul
+      li
+        a#inbox(href='#')
+          ion-icon(name='mail-unread-outline')
+          span Inbox
+      li
+        a(href='#')
+          ion-icon(name='star-outline')
+          span Starred
+      li
+        a(href='#')
+          ion-icon(name='paper-plane-outline')
+          span Sent
+      li
+        a(href='#')
+          ion-icon(name='document-text-outline')
+          span Drafts
+      li
+        a(href='#')
+          ion-icon(name='bookmark-outline')
+          span Important
+      li
+        a(href='#')
+          ion-icon(name='alert-circle-outline')
+          span Spam
+      li
+        a(href='#')
+          ion-icon(name='trash-outline')
+          span Trash
+  div
+    .linea
+    .modo-oscuro
+      .info
+        ion-icon(name='moon-outline')
+        span Drak Mode
+      .switch
+        .base
+          .circulo
+    .usuario
+      img(src='/Jhampier.jpg' alt='')
+      .info-usuario
+        .nombre-email
+          span.nombre Jhampier
+          span.email jhampier@gmail.com
+        ion-icon(name='ellipsis-vertical-outline')
+
+script(type='module' src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js')
+script(nomodule='' src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js')
+
+
+    

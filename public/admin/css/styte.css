@@ -1,0 +1,528 @@
+
+
+/* Navbar */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
+:root{
+    --color-barra-lateral:rgb(255,255,255);
+
+    --color-texto:rgb(0,0,0);
+    --color-texto-menu:rgb(134,136,144);
+
+    --color-menu-hover:rgb(238,238,238);
+    --color-menu-hover-texto:rgb(0,0,0);
+
+    --color-boton:rgb(0,0,0);
+    --color-boton-texto:rgb(255,255,255);
+
+    --color-linea:rgb(180,180,180);
+
+    --color-switch-base :rgb(201,202,206);
+    --color-switch-circulo:rgb(241,241,241);
+
+    --color-scroll:rgb(192,192,192);
+    --color-scroll-hover:rgb(134,134,134);
+}
+
+.dark-mode{
+    --color-barra-lateral:rgb(44,45,49);
+
+    --color-texto:rgb(255,255,255);
+    --color-texto-menu:rgb(110,110,117);
+
+    --color-menu-hover:rgb(0,0,0);
+    --color-menu-hover-texto:rgb(238,238,238);
+
+    --color-boton:rgb(255,255,255);
+    --color-boton-texto:rgb(0,0,0);
+
+    --color-linea:rgb(90,90,90);
+
+    --color-switch-base :rgb(39,205,64);
+    --color-switch-circulo:rgb(255,255,255);
+
+    --color-scroll:rgb(68,69,74);
+    --color-scroll-hover:rgb(85,85,85);
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: #ccc;
+}
+
+/*-----------------Menu*/
+.menu{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--color-boton);
+    color: var(--color-boton-texto);
+    right: 15px;
+    top: 15px;
+    z-index: 100;
+}
+
+
+/*----------------Barra Lateral*/
+.barra-lateral{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: 100%;
+    overflow: hidden;
+    padding: 20px 15px;
+    background-color: var(--color-barra-lateral);
+    transition: width 0.5s ease,background-color 0.3s ease,left 0.5s ease;
+    z-index: 50;
+}
+
+.mini-barra-lateral{
+    width: 80px;
+}
+.barra-lateral span{
+    width: 100px;
+    white-space: nowrap;
+    font-size: 18px;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 0.5s ease,width 0.5s ease;
+}
+.barra-lateral span.oculto{
+    opacity: 0;
+    width: 0;
+}
+
+/*------------> Nombre de la página */
+.barra-lateral .nombre-pagina{
+    width: 100%;
+    height: 45px;
+    color: var(--color-texto);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.barra-lateral .nombre-pagina ion-icon{
+    min-width: 50px;
+    font-size: 40px;
+   
+}
+.barra-lateral .nombre-pagina span{
+    margin-left: 5px;
+    font-size: 25px;
+}
+
+
+/*------------> Botón*/
+.barra-lateral .boton{
+    width: 100%;
+    height: 45px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-boton);
+    color: var(--color-boton-texto);
+}
+
+.fa-film{
+    font-size: 20px;
+    flex: 0.4;
+}
+.barra-lateral .boton ion-icon{
+    min-width: 50px;
+    font-size: 25px;
+}
+
+
+/*--------------> Menu Navegación*/
+.barra-lateral .navegacion{
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.barra-lateral .navegacion::-webkit-scrollbar{
+    width: 5px;
+}
+.barra-lateral .navegacion::-webkit-scrollbar-thumb{
+    background-color: var(--color-scroll);
+    border-radius: 5px;
+}
+.barra-lateral .navegacion::-webkit-scrollbar-thumb:hover{
+    background-color: var(--color-scroll-hover);
+}
+.barra-lateral .navegacion li{  
+    list-style: none;
+    display: flex;
+    margin-bottom: 5px;
+}
+.barra-lateral .navegacion a{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 10px;
+    color: var(--color-texto-menu);
+}
+.barra-lateral .navegacion a:hover{
+    background-color: var(--color-menu-hover);
+    color: var(--color-menu-hover-texto);
+}
+.barra-lateral .navegacion ion-icon{
+    min-width: 50px;
+    font-size: 20px;
+}
+
+/*-----------------> Linea*/
+.barra-lateral .linea{
+    width: 100%;
+    height: 1px;
+    margin-top: 15px;
+    background-color: var(--color-linea);
+}
+
+/*----------------> Modo Oscuro*/
+.barra-lateral .modo-oscuro{
+    width: 100%;
+    margin-bottom: 80px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.barra-lateral .modo-oscuro .info{
+    width: 150px;
+    height: 45px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: var(--color-texto-menu);
+}
+.barra-lateral .modo-oscuro ion-icon{
+
+    width: 50px;
+    font-size: 20px;
+}
+
+/*--->switch*/
+.barra-lateral .modo-oscuro .switch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 45px;
+    cursor: pointer;
+}
+.barra-lateral .modo-oscuro .base{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 35px;
+    height: 20px;
+    background-color: var(--color-switch-base);
+    border-radius: 50px;
+}
+.barra-lateral .modo-oscuro .circulo{
+    position: absolute;
+    width: 18px;
+    height: 90%;
+    background-color: var(--color-switch-circulo);
+    border-radius: 50%;
+    left: 2px;
+    transition: left 0.5s ease;
+}
+.barra-lateral .modo-oscuro .circulo.prendido{
+    left: 15px;
+}
+
+/*---------------> Usuario*/
+.barra-lateral .usuario{
+    width: 100%;
+    display: flex;
+}
+.barra-lateral .usuario img{
+    width: 50px;
+    min-width: 50px;
+    border-radius: 10px;
+}
+.barra-lateral .usuario .info-usuario{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-texto);
+    overflow: hidden;
+}
+.barra-lateral .usuario .nombre-email{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+.barra-lateral .usuario .nombre{
+    font-size: 15px;
+    font-weight: 600;
+}
+.barra-lateral .usuario .email{
+    font-size: 13px;
+}
+.barra-lateral .usuario ion-icon{
+    font-size: 20px;
+}
+
+.barra-lateral a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*-------------main*/
+
+#inbox{
+    background-color: var(--color-menu-hover);
+    color: var(--color-menu-hover-texto);
+}
+
+main{
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s ease;
+}
+main.min-main{
+    margin-left: 80px;
+}
+
+
+
+/*------------------> Responsive*/
+@media (max-height: 660px){
+    .barra-lateral .nombre-pagina{
+        margin-bottom: 5px;
+    }
+    .barra-lateral .modo-oscuro{
+        margin-bottom: 3px;
+    }
+}
+@media (max-width: 600px){
+    .barra-lateral{
+        position: fixed;
+        left: -250px;
+    }
+    .max-barra-lateral{
+        left: 0;
+    }
+    .menu{
+        display: flex;
+    }
+    .menu ion-icon:nth-child(2){
+        display: none;
+    }
+    main{
+        margin-left: 0;
+    }
+    main.min-main{
+        margin-left: 0;
+    }
+    
+}
+
+/* End Navbar */
+
+
+/* Css Table */
+
+.table-movie{
+    background-color: #86c8c8a6;
+}
+
+
+.table-movie thead th,
+.table-movie tbody td{
+    padding: 3px 15px;
+    max-width: 180px;
+    text-align: center;
+    border-bottom: 2px solid #d94141;
+}
+
+.table-movie tbody button{
+    color: #fff;
+    width: 100%;
+    background-color: #9256b9;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.table-movie tbody img{
+    width: 40%;
+}
+
+
+.table-movie tbody span{
+    padding: 2px;
+    background-color: #a980c0;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.container-control{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container-control button{
+    background-color: #b08888;
+    color: #fff;
+    padding: 3px;
+    border: 0;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.active{
+    background-color: #1e6253 !important;
+}
+
+
+/* End Css table */
+
+.form-input{
+    display: flex;
+}
+
+.form-input input{
+    border: 1px solid #ddd;
+    width: 50%;
+    height: 36px;
+    font-size: 13px;
+    border: 0;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+#form-search{
+    margin: 5px 0;
+}
+
+.button-form button{
+    width: 100%;
+    height: 100%;
+}
+
+.table-movie tbody a{
+    text-decoration: none;
+}
+
+.table-movie tbody b{
+    color: #fff;
+    background-color: #d4379b;
+    margin: 5px 0;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+/* Page */
+.page-btn {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.page-btn .page {
+    color: #fff;
+    padding: 8px 15px;
+    background-color: #337ab7;
+    margin: 30px 3px;
+}
+.page-btn .fa-angle-left,
+.page-btn .fa-chevron-right{
+    font-size: 15px;
+    line-height: 1.7;
+}
+.page-btn .page:hover {
+    cursor: pointer;
+    background-color: #c69714;
+}
+
+.active-page{
+    background-color: #c69714 !important;
+}
+
+/* end page */
+
+/* Show Alert */
+[show-alert] {
+    position: fixed;
+    top : 70px;
+    right: 15px;
+    z-index: 99999;
+
+}
+
+[show-alert].alert-hidden{
+    animation-name: alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes alert-hidden{
+    form{
+        right: 15px;
+    }
+    to{
+        right: -100%;
+        display: none;
+    }
+}
+
+[show-alert] [close-alert]{
+    background-color: #fff;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* End Show Alert */
+
+/* Image Preview */
+
+.image-preview{
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.image-preview[src=""]{
+    display: none;
+}
+
+
+.hidden{
+    display: none
+}
+
+/* End Image Preview */

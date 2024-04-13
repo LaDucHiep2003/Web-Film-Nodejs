@@ -1,0 +1,115 @@
+
+extends ../../layouts/default.pug
+
+block main 
+  #content-firm
+    .container
+      .container-infomation-firm
+        .container-x
+          img.img-poster(src= movie.image)
+          .info-firm
+            .name.set-child-info-firm
+              .text-name.set-flex-left.col-padding-info-firm Tên
+              .name-init.set-flex-fight.col-padding-info-firm
+                h1 #{movie.name}
+            .name-other.set-child-info-firm
+              .text-name-other.set-flex-left.col-padding-info-firm Tên Khác
+              .name-other-init.set-flex-fight.col-padding-info-firm
+                | #{movie.nameOther}
+            .list-cate.set-child-info-firm
+              .text-lish-cate.set-flex-left.col-padding-info-firm Thể Loại
+              .list-cate-init.set-flex-fight.col-padding-info-firm
+                a(href='') #{movie.listCate}
+            .new-ep.set-child-info-firm
+              .text-new-ep.set-flex-left.col-padding-info-firm Tập mới nhất
+              .new-ep-init.set-flex-fight.col-padding-info-firm
+                span Tập #{movie.newEp}
+            .info-more.set-child-info-firm
+              .text-info-more.set-flex-left.col-padding-info-firm Thông Tin Khác
+              .info-more-init.set-flex-fight.col-padding-info-firm
+                .year
+                  i.fa-solid.fa-calendar-days.set-icon-info-more-show
+                  span.set-info-more-show #{movie.infoMore}
+                .total-episode
+                  i.fa-regular.fa-clock.set-icon-info-more-show
+                  span.set-info-more-show 103 tập
+            .rate.set-child-info-firm
+              .text-rate.set-flex-left.col-padding-info-firm Đánh Giá
+              .rate-init.set-flex-fight.col-padding-info-firm
+                i.fa-solid.fa-star
+                | #{movie.rate}
+          .clear
+        .watch
+          .watching
+            .container-watching
+              a(href=`/phim/${movie.slug}/${movie.newEp}`)
+                i.fa-regular.fa-circle-play
+                | Xem Phim
+          .follow
+            .container-watching
+              a(href='')
+                i.fa-solid.fa-bookmark
+                | Theo Doi
+        .search-ep-qick
+          span
+            i.fa-solid.fa-magnifying-glass
+            |TÌM TẬP NHANH
+            i.fa-solid.fa-chevron-down
+          span.input-search
+            input(type='text' placeholder='Nhap So Tap')
+        .episode
+          ul.btn-epi
+            - for(var i = 1;i <= movie.newEp;i++)
+                li
+                  a(href= `/phim/${movie.slug}/${i}`) #{i}
+        .time-line
+          .container-time
+            i.fa-solid.fa-calendar-days.set-icon-info-more-show
+            | Phim Chiếu 1 Tập Vào 
+            a(href='') Thứ #{movie.Showtimes}
+        .text-content
+          p NỘI DUNG PHIM
+          .clear
+          .review
+            strong Xem phim #{movie.name} Vietsub #{movie.infoMore}:
+            p #{movie.textContent}
+        .comment
+          .form-comment
+            .avata-user
+              img(src='{{acc.avata}}' alt='')
+            .main-form
+              form(action='/phim/comment/{{firmupdate._id}}?_method=PUT')
+                input(type='text' placeholder='Tham Gia Bình Luận' name='comment')
+                .btn-send
+                  button Gửi
+          .login-to-comment
+            .login
+              .y
+                a(href='/login')
+                  i.fa-solid.fa-right-to-bracket
+                  span Đăng nhập để bình luận
+          .new-comment
+            .sort-comment
+              .total-comment
+                span 3.5K
+                |  BÌNH LUẬN
+              .sort
+                span Mới nhất
+                i.ti-angle-down.choose
+                .choose-sort.disable
+                  span.set-choose-sort Cũ nhất
+                  span.set-choose-sort Phổ biến
+            .container-comment
+              .main-comment
+                .comment-top
+                  .avata-user
+                    img(src='{{this.avata}}' alt='')
+                  .text-comment
+                    .nameUser
+                      span {{this.accountName}}
+                    .content-comment
+                      p {{this.cmt}}
+                    .like-comment
+                      div
+                        i.fa-solid.fa-thumbs-up
+                        span 0

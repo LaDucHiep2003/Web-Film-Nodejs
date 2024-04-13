@@ -1,0 +1,41 @@
+
+#login
+  link(rel="stylesheet", href="css/styte.css")
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css")
+  link(rel="stylesheet", href="/js/login.js")
+
+  form(
+    id = "form-login"
+    action = "/stored"
+    method = "post"
+  )
+    a(href='/')
+      i.fa-solid.fa-house
+    input#login_swich(type='radio' name='swich' checked='')
+    input#signup_swich(type='radio' name='swich')
+    input#forgot_swich(type='radio' name='swich')
+    span.label_wrap
+      label(for='login_swich') Log in
+      label(for='signup_swich') Sign up
+      label(for='forgot_swich') Forgot Password
+    input(placeholder='Username' name='userName')
+    input(placeholder='Password' name='passWord' type='password')
+    input#confirm(placeholder='Confirm password' type='password')
+    input#forgot(placeholder='Recovery email' type='password')
+    .form_btns
+      a
+        label(for='forgot_swich') Forgot password?
+      button#login_btn Log in
+      a
+        label(for='signup_swich') Create account
+    .form_btns
+      button#signup_btn Sign up
+      a
+        label(for='login_swich') Login
+    .form_btns
+      button#forgot_btn Reset Password
+      
+
+
+
+
