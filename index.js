@@ -15,9 +15,9 @@ const port = process.env.port
 
 database.connect()
 
-app.use(express.static('public'))
+app.use(express.static(`${__dirname}/public`))
 app.use(bodyParser.urlencoded({ extended: false }))
-app.set('views', './views')
+app.set('views', `${__dirname}/views`)
 app.set('view engine', 'pug')
 app.use(methodOverride('_method'))
 // Flag
