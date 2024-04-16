@@ -10,6 +10,7 @@ const methodOverride = require('method-override')
 const flash = require('express-flash')
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
+const path = require('path');
 
 const port = process.env.port
 
@@ -24,6 +25,11 @@ app.use(methodOverride('_method'))
 app.use(cookieParser('namamn'));
 app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
+
+// TinyMCE
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+// End TinyMce
+
 
 route(app)
 routeAdmin(app)

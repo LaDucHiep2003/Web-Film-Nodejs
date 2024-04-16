@@ -1,0 +1,15 @@
+mixin sort()
+    div(sort)
+        select(
+            class = "form-control"
+            name = "sort"
+            sort-select
+        )
+            option(value = "position-desc") Vi tri giam dan 
+            option(value = "position-asc") Vi tri tang dan
+            option(value = "name-asc") Tieu de A - Z 
+            option(value = "name-desc") Tieu de Z - A
+        button(
+            class = "btn btn-danger mt-2"
+            sort-clear
+        ) Clear

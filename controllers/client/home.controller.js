@@ -20,7 +20,7 @@ module.exports.index = async (req, res) => {
 
     let objectPagination = {
         currentPage : 1,
-        limitItem : 3
+        limitItem : 10
     }
 
     if(req.query.page){

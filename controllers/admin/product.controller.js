@@ -52,6 +52,19 @@ module.exports.index = async (req, res) => {
     if (req.query.page) {
         objectPagination.currentPage = parseInt(req.query.page)
     }
+
+    // Sort
+    let sort = {
+
+    }
+    if(req.query.sortKey && req.query.sortValue){
+        sort[req.query.sortKey] = req.query.sortValue
+    }
+    else{
+        sort.position = "desc"
+    }
+
+    // End Sort
     const countMovie = await Movie.countDocuments({deleted : false})
 
     const totalPage = Math.ceil(countMovie / objectPagination.limitItem)
@@ -61,7 +74,7 @@ module.exports.index = async (req, res) => {
     // End paginatinon
 
 
-    const movies = await Movie.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort({position : "desc"})
+    const movies = await Movie.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort(sort)
 
 
     res.render("admin/pages/product/index", {
@@ -161,6 +174,103 @@ module.exports.editPatch = async (req, res) => {
    
 
     res.redirect(`back`)
+}
+
+module.exports.deleted = async (req, res) => {
+    const filterStatus = [
+        {
+            name: "Tất cả",
+            status: "",
+            class: ""
+        },
+        {
+            name: "Hoạt động",
+            status: "active",
+            class: ""
+        },
+        {
+            name: "Dừng hoạt động",
+            status: "inactive",
+            class: ""
+        }
+    ]
+    const find = {
+        deleted: true
+    }
+
+    if (req.query.status) {
+        const index = filterStatus.findIndex(item => item.status == req.query.status)
+        filterStatus[index].class = "active"
+    } else {
+        const index = filterStatus.findIndex(item => item.status == "")
+        filterStatus[index].class = "active"
+    }
+
+    if (req.query.status) {
+        find.status = req.query.status
+    }
+
+    let keywork = ""
+    if (req.query.keywork) {
+        keywork = req.query.keywork
+        const regex = new RegExp(keywork, "i")
+        find.name = regex
+    }
+
+    // Pagination
+    let objectPagination = {
+        currentPage: 1,
+        limitItem: 3
+    }
+
+    if (req.query.page) {
+        objectPagination.currentPage = parseInt(req.query.page)
+    }
+
+    // Sort
+    let sort = {
+
+    }
+    if(req.query.sortKey && req.query.sortValue){
+        sort[req.query.sortKey] = req.query.sortValue
+    }
+    else{
+        sort.position = "desc"
+    }
+
+    // End Sort
+    const countMovie = await Movie.countDocuments({deleted : false})
+
+    const totalPage = Math.ceil(countMovie / objectPagination.limitItem)
+    objectPagination.totalPage = totalPage
+
+    objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limitItem
+    // End paginatinon
+
+
+    const movies = await Movie.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort(sort)
+
+
+    res.render("admin/pages/product/deleted", {
+        pageTitle: "Da Xoa",
+        movies: movies,
+        filterStatus: filterStatus,
+        keywork: keywork,
+        pagination: objectPagination
+    })
+}
+
+module.exports.stored = async (req, res) => {
+
+    const id = req.params.id
+
+    await Movie.updateOne({ _id: id },
+        {
+            deleted : false,
+            deletedAt : new Date()
+        })
+    req.flash('sucsess', `Xoa Khoi Phuc San Pham`);
+    res.redirect("back")
 }
 
 
