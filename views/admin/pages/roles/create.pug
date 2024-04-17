@@ -3,7 +3,7 @@ extends ../../layouts/default.pug
 
 
 block main 
-    h1(class = "mb-4") Them Moi Nhom Quyen
+    h1(class = "mb-4") Thêm mới nhóm quyền
 
     form(
         action= `/admin/roles/create`
@@ -11,7 +11,7 @@ block main
     ) 
 
         div(class = "form-group")
-            label(for="name") Tieu De 
+            label(for="name") Tên 
             input(
                 type="text"
                 class = "form-control"
@@ -20,7 +20,7 @@ block main
                 
             ) 
         div(class = "form-group")
-            label(for="desc") Mo Ta 
+            label(for="desc") Mô tả 
             input(
                 type="text"
                 class = "form-control"
@@ -31,4 +31,4 @@ block main
             button(
                 type = "submit"
                 class = "btn btn-primary"
-            ) Tao moi
+            ) Tạo mới

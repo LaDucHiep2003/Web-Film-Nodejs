@@ -17,7 +17,7 @@ block main
                         href= `/admin/roles/create`
                         class = "btn btn-outline-success"
 
-                    ) + Them Moi
+                    ) + Thêm mới
 
             table(
                 class = "table table-hover table-sm"
@@ -27,9 +27,9 @@ block main
                     tr 
                         
                         th STT 
-                        th Nhom quyen 
-                        th Mo ta ngan
-                        th Hanh dong 
+                        th Nhóm quyền 
+                        th Mô tả 
+                        th Hành động
                 tbody 
                     if(records.length > 0)
                         each item,index in records
@@ -42,18 +42,18 @@ block main
                                         href = `/admin/roles/detail/${item.id}`
                                         class = "btn btn-secondary btn-sm"
                                     
-                                    ) Chi Tiet 
+                                    ) Chi tiết
                                     a(
                                         href = `/admin/roles/edit/${item.id}`
                                         class = "btn btn-warning btn-sm"
                                     
-                                    ) Sua 
+                                    ) Sửa 
                                     button(
                                         class = "btn btn-danger btn-sm ml-1"
-                                    ) Xoa 
+                                    ) Xóa 
                     else
                         tr 
-                            td(col-span = "4" class = "text-center") Chua co nhom phan quyen nao duoc tao
+                            td(col-span = "4" class = "text-center") Chưa có nhóm quyền nào được tạo
             
             
 

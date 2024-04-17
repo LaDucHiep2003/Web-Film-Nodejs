@@ -32,7 +32,7 @@ block main
                 value = movie.nameOther
             ) 
         div(class = "form-group")
-            label(for="textContent") Noi Dung
+            label(for="textContent") Nội dung
             textarea(
                 class = "form-control"
                 id = "textContent"
@@ -40,7 +40,7 @@ block main
                 row = "5"   
             ) #{movie.textContent}
         div(class = "form-group")
-            label(for="listCate") The Loai
+            label(for="listCate") Thể loại
             input(
                 type="text"
                 class = "form-control"
@@ -50,7 +50,7 @@ block main
             ) 
 
         div(class = "form-group")
-            label(for="newEp") Tap Moi Nhat
+            label(for="newEp") Tập mới nhất
             input(
                 type="newEp"
                 class = "form-control"
@@ -60,7 +60,7 @@ block main
                 min = "0"
             ) 
         div(class = "form-group")
-            label(for="infoMore") Thong Tin Khac
+            label(for="infoMore") Thông tin khác
             input(
                 type="text"
                 class = "form-control"
@@ -69,7 +69,7 @@ block main
                 value = movie.infoMore
             ) 
         div(class = "form-group")
-            label(for="rate") Danh Gia
+            label(for="rate") Đánh giá
             input(
                 type="text"
                 class = "form-control"
@@ -88,7 +88,7 @@ block main
             )
 
         div(class = "form-group")
-            label(for="Showtimes") Thoi Luong Phim
+            label(for="Showtimes") Thời lượng phim
             input(
                 type="number"
                 class = "form-control"
@@ -102,7 +102,7 @@ block main
             class = "form-group"
             upload-image
         )
-            label(for="image") Anh
+            label(for="image") Ảnh
             input(
                 type="file"
                 class = "form-control-file"
@@ -120,7 +120,7 @@ block main
                 upload-image-preview
             )
         div(class = "form-group")
-            label(for="position") Vi tri
+            label(for="position") Vị trí
             input(
                 type="text"
                 class = "form-control"
@@ -140,8 +140,7 @@ block main
                 value = "active"
                 checked = (movie.status == "active" ? true : false)
             ) 
-            label(for = "statusActive" class = "form-check-label") Hoat Dong 
-
+            label(for = "statusActive" class = "form-check-label") Hoạt động
         div(class = "form-group form-check form-check-inline")
             
             input(
@@ -152,10 +151,10 @@ block main
                 value = "inactive"
                 checked = (movie.status == "inactive" ? true : false)
             ) 
-            label(for = "statusInActive" class = "form-check-label") Dung Hoat Dong 
+            label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
         
         div(class = "form-group")
             button(
                 type = "submit"
                 class = "btn btn-primary"
-            ) Cap Nhat
+            ) Cập nhật
