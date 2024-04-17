@@ -1,0 +1,61 @@
+
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+
+block main
+    +success("5000")
+    h1(class = "mb-4") Nhom quyen
+
+    .card.mb-3 
+        .card-header Danh sach
+        .card-body 
+            .row 
+                .col-8 
+                .col-4 
+                    a(
+                        href= `/admin/roles/create`
+                        class = "btn btn-outline-success"
+
+                    ) + Them Moi
+
+            table(
+                class = "table table-hover table-sm"
+                
+                )
+                thead 
+                    tr 
+                        
+                        th STT 
+                        th Nhom quyen 
+                        th Mo ta ngan
+                        th Hanh dong 
+                tbody 
+                    if(records.length > 0)
+                        each item,index in records
+                            tr 
+                                td #{index + 1}
+                                td #{item.name}
+                                td #{item.description}
+                                td 
+                                    a(
+                                        href = `/admin/roles/detail/${item.id}`
+                                        class = "btn btn-secondary btn-sm"
+                                    
+                                    ) Chi Tiet 
+                                    a(
+                                        href = `/admin/roles/edit/${item.id}`
+                                        class = "btn btn-warning btn-sm"
+                                    
+                                    ) Sua 
+                                    button(
+                                        class = "btn btn-danger btn-sm ml-1"
+                                    ) Xoa 
+                    else
+                        tr 
+                            td(col-span = "4" class = "text-center") Chua co nhom phan quyen nao duoc tao
+            
+            
+
+
+                    

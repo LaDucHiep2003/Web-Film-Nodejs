@@ -1,0 +1,34 @@
+extends ../../layouts/default.pug
+
+
+
+block main 
+    h1(class = "mb-4") Them Moi Nhom Quyen
+
+    form(
+        action= `/admin/roles/create`
+        method = "POST"
+    ) 
+
+        div(class = "form-group")
+            label(for="name") Tieu De 
+            input(
+                type="text"
+                class = "form-control"
+                id = "name"
+                name = "name"
+                
+            ) 
+        div(class = "form-group")
+            label(for="desc") Mo Ta 
+            input(
+                type="text"
+                class = "form-control"
+                id = "desc"
+                name = "description"
+            ) 
+        div(class = "form-group")
+            button(
+                type = "submit"
+                class = "btn btn-primary"
+            ) Tao moi

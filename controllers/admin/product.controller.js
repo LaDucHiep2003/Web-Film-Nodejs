@@ -1,5 +1,8 @@
 
 const Movie = require('../../models/movie.model')
+const MovieCategory = require("../../models/movie-category.model")
+const createTree = require("../../helpers/createTree")
+
 
 module.exports.index = async (req, res) => {
 
@@ -126,8 +129,16 @@ module.exports.deleteItem = async (req, res) => {
 
 // [GET] /admin/product/create
 module.exports.create = async (req, res) => {
+    let find = {
+        deleted: false
+    }
+
+    const category = await MovieCategory.find(find)
+    const newCategory = createTree.tree(category)
+
     res.render("admin/pages/product/create", {
         pageTitle: "Trang Them Moi",
+        category : newCategory
     })
 }
 

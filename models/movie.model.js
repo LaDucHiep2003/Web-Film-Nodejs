@@ -5,6 +5,10 @@ mongoose.plugin(slug);
 const movieSchema = new mongoose.Schema(
     {
         name: { type: String, maxLength: 255 },
+        movie_category_id : {
+            type : String,
+            default : ""
+        },
         image: { type: String },
         nameOther: { type: String },
         listCate: { type: String },
