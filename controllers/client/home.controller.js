@@ -1,7 +1,7 @@
 
 const Movie = require('../../models/movie.model')
 const MovieHot = require('../../models/movieHot.model')
-const account = require('../../models/account.model')
+const account = require('../../models/account_user.model')
 
 
 module.exports.index = async (req, res) => {

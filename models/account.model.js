@@ -1,27 +1,31 @@
 const { default: mongoose } = require("mongoose");
+const slug = require('mongoose-slug-updater');
+const generate = require("../helpers/generate")
 
-const loginSchema = new mongoose.Schema(
+mongoose.plugin(slug);
+const accountSchema = new mongoose.Schema(
     {
-        userName : {type : String},
-        passWord : {type : String},
-        success : {
-            type : Boolean,
-            default : true
-        },
-        avata : {
+        fullName : String,
+        email : String,
+        passWord : String,
+        token : {
             type : String,
-            default : "https://res.cloudinary.com/dsxkwbfyq/image/upload/v1710926474/avatar-facebook-mac-dinh-14_a4dhcr.jpg"
+            default : generate.generateRandomString(20)
         },
-        maxim : {type : String},
-        dateTime : {type :Date},
-        accountName : {type : String},
-        email : {type : String},
-    },   
-    {
-        timestamps: true,
-    },
+        phone : String,
+        avatar : String,
+        role_id : String,
+        status : String,
+        deleted : {
+            type : Boolean,
+            default : false
+        },
+        deletedAt : Date
+    },{
+        timestamps : true
+    }
 )
 
-const Product = mongoose.model('account', loginSchema, 'account_users')
+const Account = mongoose.model('Account', accountSchema, 'accounts')
 
-module.exports = Product
+module.exports = Account
