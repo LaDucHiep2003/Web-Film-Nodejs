@@ -2,159 +2,160 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main 
-    +alert-error(5000)
-    +success(5000)
-    h1(class = "mb-4") Chỉnh sửa nội dung phim 
+    if(role.permissions.includes("products_edit"))
+        +alert-error(5000)
+        +success(5000)
+        h1(class = "mb-4") Chỉnh sửa nội dung phim 
 
-    form(
-        action= `/admin/products/edit/${movie.id}?_method=PATCH`
-        id = "form-create-product"
-        enctype="multipart/form-data"
-        method = "POST"
-    ) 
+        form(
+            action= `/admin/products/edit/${movie.id}?_method=PATCH`
+            id = "form-create-product"
+            enctype="multipart/form-data"
+            method = "POST"
+        ) 
 
-        div(class = "form-group")
-            label(for="name") Tên phim
-            input(
-                type="text"
-                class = "form-control"
-                id = "name"
-                name = "name"
-                value = movie.name
-            )   
-        div(class = "form-group")
-            label(for="nameOther") Tên khác
-            input(
-                type="text"
-                class = "form-control"
-                id = "nameOther"
-                name = "nameOther"
-                value = movie.nameOther
-            ) 
-        div(class = "form-group")
-            label(for="textContent") Nội dung
-            textarea(
-                class = "form-control"
-                id = "textContent"
-                name = "textContent"
-                row = "5"   
-            ) #{movie.textContent}
-        div(class = "form-group")
-            label(for="listCate") Thể loại
-            input(
-                type="text"
-                class = "form-control"
-                id = "listCate"
-                name = "listCate"
-                value = movie.listCate
-            ) 
+            div(class = "form-group")
+                label(for="name") Tên phim
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "name"
+                    name = "name"
+                    value = movie.name
+                )   
+            div(class = "form-group")
+                label(for="nameOther") Tên khác
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "nameOther"
+                    name = "nameOther"
+                    value = movie.nameOther
+                ) 
+            div(class = "form-group")
+                label(for="textContent") Nội dung
+                textarea(
+                    class = "form-control"
+                    id = "textContent"
+                    name = "textContent"
+                    row = "5"   
+                ) #{movie.textContent}
+            div(class = "form-group")
+                label(for="listCate") Thể loại
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "listCate"
+                    name = "listCate"
+                    value = movie.listCate
+                ) 
 
-        div(class = "form-group")
-            label(for="newEp") Tập mới nhất
-            input(
-                type="newEp"
-                class = "form-control"
-                id = "newEp"
-                name = "newEp"
-                value = movie.newEp
-                min = "0"
-            ) 
-        div(class = "form-group")
-            label(for="infoMore") Thông tin khác
-            input(
-                type="text"
-                class = "form-control"
-                id = "infoMore"
-                name = "infoMore"
-                value = movie.infoMore
-            ) 
-        div(class = "form-group")
-            label(for="rate") Đánh giá
-            input(
-                type="text"
-                class = "form-control"
-                id = "rate"
-                name = "rate"
-                value = movie.rate
-            )
-        div(class = "form-group")
-            label(for="backgound") Background
-            input(
-                type="text"
-                class = "form-control"
-                id = "backgound"
-                name = "backgound"
-                value = movie.backgound
-            )
+            div(class = "form-group")
+                label(for="newEp") Tập mới nhất
+                input(
+                    type="newEp"
+                    class = "form-control"
+                    id = "newEp"
+                    name = "newEp"
+                    value = movie.newEp
+                    min = "0"
+                ) 
+            div(class = "form-group")
+                label(for="infoMore") Thông tin khác
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "infoMore"
+                    name = "infoMore"
+                    value = movie.infoMore
+                ) 
+            div(class = "form-group")
+                label(for="rate") Đánh giá
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "rate"
+                    name = "rate"
+                    value = movie.rate
+                )
+            div(class = "form-group")
+                label(for="backgound") Background
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "backgound"
+                    name = "backgound"
+                    value = movie.backgound
+                )
 
-        div(class = "form-group")
-            label(for="Showtimes") Thời lượng phim
-            input(
-                type="number"
-                class = "form-control"
-                id = "Showtimes"
-                name = "Showtimes"
-                value = movie.Showtimes
-                min = "0"
-            ) 
-        
-        div(
-            class = "form-group"
-            upload-image
-        )
-            label(for="image") Ảnh
-            input(
-                type="file"
-                class = "form-control-file"
-                id = "image"
-                name = "image"
-                accept = "image/*"
-                upload-image-input
-            ) 
-            button(
-                class = "btn-cencel-upload hidden"
-                cencel-upload) X
-            img(
-                src= movie.image
-                class = "image-preview"
-                upload-image-preview
-            )
-        div(class = "form-group")
-            label(for="position") Vị trí
-            input(
-                type="text"
-                class = "form-control"
-                id = "position"
-                name = "position"
-                placeholder = "Tu Dong tang"
-                min = "1"
-                value = movie.position
-            ) 
-        div(class = "form-group form-check form-check-inline")
+            div(class = "form-group")
+                label(for="Showtimes") Thời lượng phim
+                input(
+                    type="number"
+                    class = "form-control"
+                    id = "Showtimes"
+                    name = "Showtimes"
+                    value = movie.Showtimes
+                    min = "0"
+                ) 
             
-            input(
-                type="radio"
-                class = "form-check-input"
-                id = "statusActive"
-                name = "status"
-                value = "active"
-                checked = (movie.status == "active" ? true : false)
-            ) 
-            label(for = "statusActive" class = "form-check-label") Hoạt động
-        div(class = "form-group form-check form-check-inline")
+            div(
+                class = "form-group"
+                upload-image
+            )
+                label(for="image") Ảnh
+                input(
+                    type="file"
+                    class = "form-control-file"
+                    id = "image"
+                    name = "image"
+                    accept = "image/*"
+                    upload-image-input
+                ) 
+                button(
+                    class = "btn-cencel-upload hidden"
+                    cencel-upload) X
+                img(
+                    src= movie.image
+                    class = "image-preview"
+                    upload-image-preview
+                )
+            div(class = "form-group")
+                label(for="position") Vị trí
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "position"
+                    name = "position"
+                    placeholder = "Tu Dong tang"
+                    min = "1"
+                    value = movie.position
+                ) 
+            div(class = "form-group form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusActive"
+                    name = "status"
+                    value = "active"
+                    checked = (movie.status == "active" ? true : false)
+                ) 
+                label(for = "statusActive" class = "form-check-label") Hoạt động
+            div(class = "form-group form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusInActive"
+                    name = "status"
+                    value = "inactive"
+                    checked = (movie.status == "inactive" ? true : false)
+                ) 
+                label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
             
-            input(
-                type="radio"
-                class = "form-check-input"
-                id = "statusInActive"
-                name = "status"
-                value = "inactive"
-                checked = (movie.status == "inactive" ? true : false)
-            ) 
-            label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
-        
-        div(class = "form-group")
-            button(
-                type = "submit"
-                class = "btn btn-primary"
-            ) Cập nhật
+            div(class = "form-group")
+                button(
+                    type = "submit"
+                    class = "btn btn-primary"
+                ) Cập nhật

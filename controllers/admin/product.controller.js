@@ -49,7 +49,7 @@ module.exports.index = async (req, res) => {
     // Pagination
     let objectPagination = {
         currentPage: 1,
-        limitItem: 3
+        limitItem: 5
     }
 
     if (req.query.page) {
@@ -68,7 +68,7 @@ module.exports.index = async (req, res) => {
     }
 
     // End Sort
-    const countMovie = await Movie.countDocuments({deleted : false})
+    const countMovie = await Movie.countDocuments(find)
 
     const totalPage = Math.ceil(countMovie / objectPagination.limitItem)
     objectPagination.totalPage = totalPage
@@ -172,9 +172,6 @@ module.exports.edit = async (req, res) => {
 module.exports.editPatch = async (req, res) => {
 
     req.body.position = parseInt(req.body.position)
-    if(req.file){
-        req.body.image = `/uploads/${req.file.filename}`
-    }
     
     try {
         await Movie.updateOne({_id : req.params.id},req.body)

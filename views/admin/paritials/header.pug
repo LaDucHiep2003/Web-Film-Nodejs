@@ -20,28 +20,33 @@ link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome
         a#inbox(href='/admin/dashboard')
           ion-icon(name='mail-unread-outline')
           span Tổng quan
+      if(role.permissions.includes("products_views"))
+        li
+          a(href='/admin/products')
+            ion-icon(name='star-outline')
+            span Danh sách phim
+      if(role.permissions.includes("products-category_views"))
+        li
+          a(href='/admin/products-category')
+            ion-icon(name='paper-plane-outline')
+            span Danh mục phim
+      if(role.permissions.includes("roles_views"))
+        li
+          a(href='/admin/roles')
+            ion-icon(name='document-text-outline')
+            span Nhóm quyền
+      if(role.permissions.includes("roles_permissions"))
+        li
+          a(href='/admin/roles/permissions')
+            ion-icon(name='bookmark-outline')
+            span Phân quyền
+      if(role.permissions.includes("accounts_views"))
+        li
+          a(href='/admin/accounts')
+            ion-icon(name='alert-circle-outline')
+            span Danh sách tài khoản
       li
-        a(href='/admin/products')
-          ion-icon(name='star-outline')
-          span Danh sách phim
-      li
-        a(href='/admin/products-category')
-          ion-icon(name='paper-plane-outline')
-          span Danh mục phim
-      li
-        a(href='/admin/roles')
-          ion-icon(name='document-text-outline')
-          span Nhóm quyền
-      li
-        a(href='/admin/roles/permissions')
-          ion-icon(name='bookmark-outline')
-          span Phân quyền
-      li
-        a(href='/admin/accounts')
-          ion-icon(name='alert-circle-outline')
-          span Danh sách tài khoản
-      li
-        a(href='#')
+        a(href='/admin/products/deleted')
           ion-icon(name='trash-outline')
           span Trash
   div

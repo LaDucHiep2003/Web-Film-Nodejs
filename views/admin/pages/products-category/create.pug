@@ -3,89 +3,90 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main 
-    +alert-error(5000)
-    h1(class = "mb-4") Them Moi Danh Muc Phim
+    if(role.permissions.includes("products-category_create"))
+        +alert-error(5000)
+        h1(class = "mb-4") Them Moi Danh Muc Phim
 
-    form(
-        action= `/admin/products-category/create`
-        id = "form-create-product"
-        enctype="multipart/form-data"
-        method = "POST"
-    ) 
+        form(
+            action= `/admin/products-category/create`
+            id = "form-create-product"
+            enctype="multipart/form-data"
+            method = "POST"
+        ) 
 
-        div(class = "form-group")
-            label(for="name") Tên phim
-            input(
-                type="text"
-                class = "form-control"
-                id = "name"
-                name = "name"
-            )  
-        div(class = "form-group")
-            label(for="parent_id") Danh Muc Cha
-            select(
-                name = "parent_id"
-                id = "parent_id"
-                class = "form-control"
+            div(class = "form-group")
+                label(for="name") Tên phim
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "name"
+                    name = "name"
+                )  
+            div(class = "form-group")
+                label(for="parent_id") Danh Muc Cha
+                select(
+                    name = "parent_id"
+                    id = "parent_id"
+                    class = "form-control"
+                )
+                    option(value = "") -----Chon danh muc cha-----
+                    if(records)
+                        +select-tree(records)
+            div(
+                class = "form-group"
+                upload-image
             )
-                option(value = "") -----Chon danh muc cha-----
-                if(records)
-                    +select-tree(records)
-        div(
-            class = "form-group"
-            upload-image
-        )
-            label(for="image") Anh
-            input(
-                type="file"
-                class = "form-control-file"
-                id = "image"
-                name = "image"
-                accept = "image/*"
-                upload-image-input
-            ) 
-            button(
-                class = "btn-cencel-upload hidden"
-                cencel-upload) X
-            img(
-                src=""
-                class = "image-preview"
-                upload-image-preview
-            )
-        div(class = "form-group")
-            label(for="position") Vi tri
-            input(
-                type="text"
-                class = "form-control"
-                id = "position"
-                name = "position"
-                placeholder = "Tu Dong tang"
-                min = "1"
-            ) 
-        div(class = "form-group form-check form-check-inline")
-            
-            input(
-                type="radio"
-                class = "form-check-input"
-                id = "statusActive"
-                name = "status"
-                value = "active"
-            ) 
-            label(for = "statusActive" class = "form-check-label") Hoat Dong 
+                label(for="image") Anh
+                input(
+                    type="file"
+                    class = "form-control-file"
+                    id = "image"
+                    name = "image"
+                    accept = "image/*"
+                    upload-image-input
+                ) 
+                button(
+                    class = "btn-cencel-upload hidden"
+                    cencel-upload) X
+                img(
+                    src=""
+                    class = "image-preview"
+                    upload-image-preview
+                )
+            div(class = "form-group")
+                label(for="position") Vi tri
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "position"
+                    name = "position"
+                    placeholder = "Tu Dong tang"
+                    min = "1"
+                ) 
+            div(class = "form-group form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusActive"
+                    name = "status"
+                    value = "active"
+                ) 
+                label(for = "statusActive" class = "form-check-label") Hoat Dong 
 
-        div(class = "form-group form-check form-check-inline")
+            div(class = "form-group form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusInActive"
+                    name = "status"
+                    value = "inactive"
+                ) 
+                label(for = "statusInActive" class = "form-check-label") Dung Hoat Dong 
             
-            input(
-                type="radio"
-                class = "form-check-input"
-                id = "statusInActive"
-                name = "status"
-                value = "inactive"
-            ) 
-            label(for = "statusInActive" class = "form-check-label") Dung Hoat Dong 
-        
-        div(class = "form-group")
-            button(
-                type = "submit"
-                class = "btn btn-primary"
-            ) Tao moi
+            div(class = "form-group")
+                button(
+                    type = "submit"
+                    class = "btn btn-primary"
+                ) Tao moi

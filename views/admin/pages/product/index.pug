@@ -3,152 +3,156 @@ include ../../mixins/alert.pug
 include ../../mixins/sort.pug
 
 block main 
-    +success("5000")
-    h1 Danh Sách Phim 
+    if(role.permissions.includes("products_views"))
+      +success("5000")
+      h1 Danh Sách Phim 
 
-    div(class = "container-control")
-        each item in filterStatus
+      div(class = "container-control")
+          each item in filterStatus
+              button(
+                  button-status = item.status
+                  class = `${item.class}`
+              ) #{item.name}
+          
+      form(id = "form-search")
+        div(class = "form-input")
+          input(
+            type="text"
+            placeholder = "Nhập từ khóa"
+            name = "keywork"
+            value = keywork
+          )
+          .button-form 
             button(
-                button-status = item.status
-                class = `${item.class}`
-            ) #{item.name}
-        
-    form(id = "form-search")
-      div(class = "form-input")
-        input(
-          type="text"
-          placeholder = "Nhập từ khóa"
-          name = "keywork"
-          value = keywork
+              class = "btn btn-primary"
+              type = "submit"
+            ) 
+              i(class = "fa-solid fa-magnifying-glass")
+        .cart-mt-3 
+          .card-header Sắp xếp
+          .card-body 
+              .row 
+                  .col-4 
+                      +sort()
+
+      .container-lish-movie
+
+        form(
+          action = "/admin/products/change-multi?_method=PATCH"
+          method = "POST"
+          form-change-multi
         )
-        .button-form 
-          button(
-            class = "btn btn-primary"
-            type = "submit"
-          ) 
-            i(class = "fa-solid fa-magnifying-glass")
-      .cart-mt-3 
-        .card-header Sắp xếp
-        .card-body 
-            .row 
-                .col-4 
-                    +sort()
+          .d-flex.align-items-start 
+            .form-group 
+              select(name="type" class = "form-control")
+                option(disabled selected) ---Lựa chọn----
+                option(value="delete-all") Xóa tất cả
+                option(value="change-position") Cập nhật vị trí
+            .form-group 
+              input(
+                type="text"
+                name = "ids"
+                value = ""
+                class = "form-control d-none"
+              )   
+            button(
+              type = "submit"
+              class = "btn btn-primary"
+            ) Áp Dụng
+        if(role.permissions.includes("products_create"))
+          a(
+                href="/admin/products/create"
+                class = "btn btn-outline-success mb-3"
 
-    .container-lish-movie
+              ) + Thêm Phim Mới
+        a(
+              href="/admin/products/deleted"
+              class = "btn btn-outline-success mb-3"
 
-      form(
-        action = "/admin/products/change-multi?_method=PATCH"
-        method = "POST"
-        form-change-multi
-      )
-        .d-flex.align-items-start 
-          .form-group 
-            select(name="type" class = "form-control")
-              option(disabled selected) ---Lựa chọn----
-              option(value="delete-all") Xóa tất cả
-              option(value="change-position") Cập nhật vị trí
-          .form-group 
-            input(
-              type="text"
-              name = "ids"
-              value = ""
-              class = "form-control d-none"
-            )   
-          button(
-            type = "submit"
-            class = "btn btn-primary"
-          ) Áp Dụng
-      a(
-            href="/admin/products/create"
-            class = "btn btn-outline-success mb-3"
+            ) Đã xóa
 
-          ) + Thêm Phim Mới
-      a(
-            href="/admin/products/deleted"
-            class = "btn btn-outline-success mb-3"
-
-          ) Đã xóa
-
-      table(
-        class = "table-movie"
-        checkbox-multi
-      )
-          thead 
-              tr 
-                  th 
-                      input(type="checkbox" name = "checkall")
-                  th STT 
-                  th Hình ảnh
-                  th Tên Phim 
-                  th Thời lượng phim 
-                  th Tập mới nhất
-                  th Trạng thái
-                  th Vị trí
-                  th Tên khác
-                  th Năm sản xuất
-                  th
-          tbody 
-              each item,index in movies
-                  tr 
-                      td 
+        table(
+          class = "table-movie"
+          checkbox-multi
+        )
+            thead 
+                tr 
+                    th 
+                        input(type="checkbox" name = "checkall")
+                    th STT 
+                    th Hình ảnh
+                    th Tên Phim 
+                    th Thời lượng phim 
+                    th Tập mới nhất
+                    th Trạng thái
+                    th Vị trí
+                    th Tên khác
+                    th Năm sản xuất
+                    th
+            tbody 
+                each item,index in movies
+                    tr 
+                        td 
+                            input(
+                                type="checkbox" 
+                                name="id" 
+                                value = item.id
+                            )
+                        td #{pagination.limitItem * (pagination.currentPage - 1) + (index + 1)}
+                        td 
+                            img(src= item.image, alt="")
+                        td  #{item.name}
+                        td  #{item.Showtimes}
+                        td  #{item.newEp}
+                        td  
+                            span #{item.status}
+                        td 
                           input(
-                              type="checkbox" 
-                              name="id" 
-                              value = item.id
+                            type = "number"
+                            value = item.position 
+                            style = "width : 60px"
+                            min = 1
+                            name = "position"
                           )
-                      td #{pagination.limitItem * (pagination.currentPage - 1) + (index + 1)}
-                      td 
-                          img(src= item.image, alt="")
-                      td  #{item.name}
-                      td  #{item.Showtimes}
-                      td  #{item.newEp}
-                      td  
-                          span #{item.status}
-                      td 
-                        input(
-                          type = "number"
-                          value = item.position 
-                          style = "width : 60px"
-                          min = 1
-                          name = "position"
-                        )
-                      td  #{item.nameOther}
-                      td  #{item.infoMore}
-                      td 
-                          a(
-                            href = `/admin/products/edit/${item.id}`
-                          )
-                            b Sửa
-                          button(
-                            data-id = item.id
-                            button-delete
-                          ) Xóa
-    .page-btn
-        if(pagination.currentPage > 1)
-          .page
-            i(
-              class = "fa-solid fa-angle-left"
-              button-pagination = pagination.currentPage - 1
-            )
-       
-        - for(var i = 1;i <= pagination.totalPage;i++)
-            div(
-              class = `page ${pagination.currentPage == i ? "active-page" : ""}`
-              button-pagination = i
-            ) #{i}
+                        td  #{item.nameOther}
+                        td  #{item.infoMore}
+                        td 
+                          if(role.permissions.includes("products_edit"))
+                            a(
+                              href = `/admin/products/edit/${item.id}`
+                            )
+                              b Sửa
+                          if(role.permissions.includes("products_delete"))
+                            button(
+                              data-id = item.id
+                              button-delete
+                            ) Xóa
+      .page-btn
+          if(pagination.currentPage > 1)
+            .page
+              i(
+                class = "fa-solid fa-angle-left"
+                button-pagination = pagination.currentPage - 1
+              )
         
-        
-        if(pagination.currentPage < pagination.totalPage)
-          .page
-            i(
-              class = "fa-solid fa-chevron-right"
-              button-pagination = pagination.currentPage + 1
-            )
-  
-    form(
-      action = ""
-      method = "POST"
-      id = "form-delete-item"
-      data-path = "/admin/products/delete"
-    )
+          - for(var i = 1;i <= pagination.totalPage;i++)
+              div(
+                class = `page ${pagination.currentPage == i ? "active-page" : ""}`
+                button-pagination = i
+              ) #{i}
+          
+          
+          if(pagination.currentPage < pagination.totalPage)
+            .page
+              i(
+                class = "fa-solid fa-chevron-right"
+                button-pagination = pagination.currentPage + 1
+              )
+    
+      form(
+        action = ""
+        method = "POST"
+        id = "form-delete-item"
+        data-path = "/admin/products/delete"
+      )
 

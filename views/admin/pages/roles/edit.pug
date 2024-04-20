@@ -4,35 +4,36 @@ include ../../mixins/alert.pug
 
 
 block main 
-    +alert-error(5000)
-    +success(5000)
-    h1(class = "mb-4") Cập nhật nhóm quyền
+    if(role.permissions.includes("roles_edit"))
+        +alert-error(5000)
+        +success(5000)
+        h1(class = "mb-4") Cập nhật nhóm quyền
 
-    form(
-        action= `/admin/roles/edit/${data.id}?_method=PATCH`
-        method = "POST"
-    ) 
+        form(
+            action= `/admin/roles/edit/${data.id}?_method=PATCH`
+            method = "POST"
+        ) 
 
-        div(class = "form-group")
-            label(for="name") Tên 
-            input(
-                type="text"
-                class = "form-control"
-                id = "name"
-                name = "name"
-                value = data.name
-            ) 
-        div(class = "form-group")
-            label(for="desc") Mô tả
-            input(
-                type="text"
-                class = "form-control"
-                id = "desc"
-                name = "description"
-                value = data.description
-            ) 
-        div(class = "form-group")
-            button(
-                type = "submit"
-                class = "btn btn-primary"
-            ) Cập nhật
+            div(class = "form-group")
+                label(for="name") Tên 
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "name"
+                    name = "name"
+                    value = data.name
+                ) 
+            div(class = "form-group")
+                label(for="desc") Mô tả
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "desc"
+                    name = "description"
+                    value = data.description
+                ) 
+            div(class = "form-group")
+                button(
+                    type = "submit"
+                    class = "btn btn-primary"
+                ) Cập nhật
