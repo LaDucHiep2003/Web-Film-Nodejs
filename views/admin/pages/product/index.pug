@@ -60,17 +60,7 @@ block main
               type = "submit"
               class = "btn btn-primary"
             ) Áp Dụng
-        if(role.permissions.includes("products_create"))
-          a(
-                href="/admin/products/create"
-                class = "btn btn-outline-success mb-3"
-
-              ) + Thêm Phim Mới
-        a(
-              href="/admin/products/deleted"
-              class = "btn btn-outline-success mb-3"
-
-            ) Đã xóa
+      
 
         table(
           class = "table-movie"
