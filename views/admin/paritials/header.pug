@@ -58,12 +58,13 @@ link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome
       .switch
         .base
           .circulo
+    
     .usuario
-      img(src='/Jhampier.jpg' alt='')
+      img(src= user.avatar)
       .info-usuario
         .nombre-email
-          span.nombre Jhampier
-          span.email jhampier@gmail.com
+          span.nombre #{user.fullName}
+          span.email #{user.email}
         ion-icon(name='ellipsis-vertical-outline')
     div(class = "logout text-center mt-3") 
       a(

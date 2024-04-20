@@ -2,6 +2,7 @@
 const Movie = require('../../models/movie.model')
 const MovieCategory = require("../../models/movie-category.model")
 const createTree = require("../../helpers/createTree")
+const Account = require("../../models/account.model")
 
 
 module.exports.index = async (req, res) => {
@@ -79,6 +80,28 @@ module.exports.index = async (req, res) => {
 
     const movies = await Movie.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort(sort)
 
+    for (const movie of movies) {
+        // Lay thong tin nguoi tao
+
+        const user = await Account.findOne({
+            _id : movie.createdBy.account_id
+        })
+
+        if(user){
+            movie.accountFullname = user.fullName
+        }
+        // Lay thong tin nguoi cap nhat gan nhat
+        const updatedBy = movie.updatedBy.slice(-1)[0];
+        if(updatedBy){
+            const userUpdated = await Account.findOne({
+                _id : updatedBy.account_id
+            })
+
+            updatedBy.accountFullname = userUpdated.fullName
+        }
+        
+    }
+
 
     res.render("admin/pages/product/index", {
         pageTitle: "Trang Quan Ly",
@@ -94,6 +117,10 @@ module.exports.changeMulti = async (req, res) => {
     const type = req.body.type
     const ids = req.body.ids.split(", ")
 
+    const updatedBy = {
+        account_id : res.locals.user.id,
+        updatedAt : new Date()
+    }
 
     switch (type) {
         case "delete-all":
@@ -104,7 +131,10 @@ module.exports.changeMulti = async (req, res) => {
             for(const item of ids){
                 let [id,position] = item.split("-")
                 position = parseInt(position)
-                await Movie.updateOne({_id : id} ,{position : position})
+                await Movie.updateOne({_id : id} ,{
+                    position : position,
+                    $push: { updatedBy : updatedBy}
+                })
             }
             req.flash('sucsess', `Cap Nhat Trang Thai Thanh Cong ${ids.length} San Pham`);
             
@@ -121,7 +151,10 @@ module.exports.deleteItem = async (req, res) => {
     await Movie.updateOne({ _id: id },
         {
             deleted : true,
-            deletedAt : new Date()
+            deletedBy: {
+                account_id : res.locals.user.id,
+                deletedAt : new Date()
+            } 
         })
     req.flash('sucsess', `Xoa Thanh Cong San Pham`);
     res.redirect("back")
@@ -150,6 +183,10 @@ module.exports.createPost = async (req, res) => {
         req.body.position = countMovie + 1
     }
 
+    req.body.createdBy = {
+        account_id : res.locals.user.id
+    }
+
     const movie = new Movie(req.body)
     await movie.save()
 
@@ -172,9 +209,16 @@ module.exports.edit = async (req, res) => {
 module.exports.editPatch = async (req, res) => {
 
     req.body.position = parseInt(req.body.position)
+    const updatedBy = {
+        account_id : res.locals.user.id,
+        updatedAt : new Date()
+    }
     
     try {
-        await Movie.updateOne({_id : req.params.id},req.body)
+        await Movie.updateOne({_id : req.params.id},{
+            ...req.body,
+            $push: { updatedBy : updatedBy}
+        })
         req.flash('sucsess', 'Cap Nhat Thanh Cong');
     } catch (error) {
         
@@ -257,6 +301,18 @@ module.exports.deleted = async (req, res) => {
 
 
     const movies = await Movie.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort(sort)
+
+    for (const movie of movies) {
+        // lay thong tin nguoi tao
+
+        const user = await Account.findOne({
+            _id : movie.deletedBy.account_id
+        })
+
+        if(user){
+            movie.accountFullname = user.fullName
+        }
+    }
 
 
     res.render("admin/pages/product/deleted", {

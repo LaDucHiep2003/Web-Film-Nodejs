@@ -1,6 +1,7 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 include ../../mixins/sort.pug
+include ../../mixins/moment.pug
 
 block main 
     if(role.permissions.includes("products_views"))
@@ -82,13 +83,15 @@ block main
                     th STT 
                     th Hình ảnh
                     th Tên Phim 
+                    th Người tạo
+                    th Người cập nhật
                     th Thời lượng phim 
                     th Tập mới nhất
                     th Trạng thái
                     th Vị trí
                     th Tên khác
                     th Năm sản xuất
-                    th
+                    th  
             tbody 
                 each item,index in movies
                     tr 
@@ -102,6 +105,16 @@ block main
                         td 
                             img(src= item.image, alt="")
                         td  #{item.name}
+                        td  
+                            p #{item.accountFullname}
+                            p 
+                              +formatDateTime(item.createdBy.createdAt)
+                        td 
+                          - const updated = item.updatedBy.slice(-1)[0]
+                              if(updated)
+                                  p #{item.accountFullname}
+                                  p
+                                    +formatDateTime(updated.updatedAt)
                         td  #{item.Showtimes}
                         td  #{item.newEp}
                         td  

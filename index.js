@@ -9,6 +9,7 @@ const database = require('./config/database')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const flash = require('express-flash')
+const moment = require('moment')
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const path = require('path');
@@ -29,6 +30,7 @@ app.use(flash());
 
 // App Local
 app.locals.prefixAdmin = systemConfig.prefixAdmin
+app.locals.moment = moment
 
 // TinyMCE
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));

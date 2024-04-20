@@ -25,8 +25,25 @@ const movieSchema = new mongoose.Schema(
             type : Boolean,
             default : false
         },
+        createdBy : {
+            account_id : String,
+            createdAt :{
+                type : Date,
+                default : Date.now
+            }
+        },
         status : {type : String},
-        deletedAt : {type : Date},
+        deletedBy : {
+            account_id : String,
+            deletedAt: Date
+        },
+        updatedBy : [
+            {
+                account_id : String,
+                updatedAt: Date,
+                
+            }
+        ],
         tap : [
             {
             e: {type : Number},
