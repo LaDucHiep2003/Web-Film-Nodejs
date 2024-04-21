@@ -5,7 +5,7 @@ include ../../mixins/select-tree.pug
 block main 
     if(role.permissions.includes("products_create"))
         +alert-error(5000)
-        h1(class = "mb-4") Them Moi Phim
+        h1(class = "mb-4") Thên phim
 
         form(
             action= `/admin/products/create`
@@ -23,13 +23,13 @@ block main
                     name = "name"
                 )   
             div(class = "form-group")
-                label(for="movie_category_id") Danh Muc
+                label(for="movie_category_id") Danh mục
                 select(
                     name = "movie_category_id"
                     id = "movie_category_id"
                     class = "form-control"
                 )
-                    option(value = "") -----Chon danh muc-----
+                    option(value = "") -----Chọn danh mục-----
                     if(category)
                         +select-tree(category)
             div(class = "form-group")
@@ -41,7 +41,7 @@ block main
                     name = "nameOther"
                 ) 
             div(class = "form-group")
-                label(for="textContent") Noi Dung
+                label(for="textContent") Nội dung
                 textarea(
 
                     class = "form-control textarea-mce"
@@ -50,7 +50,7 @@ block main
                     row = "5"   
                 ) 
             div(class = "form-group")
-                label(for="listCate") The Loai
+                label(for="listCate") Thể loại
                 input(
                     type="text"
                     class = "form-control"
@@ -59,7 +59,7 @@ block main
                 ) 
 
             div(class = "form-group")
-                label(for="newEp") Tap Moi Nhat
+                label(for="newEp") Tập mới nhất
                 input(
                     type="newEp"
                     class = "form-control"
@@ -69,7 +69,7 @@ block main
                     min = "0"
                 ) 
             div(class = "form-group")
-                label(for="infoMore") Thong Tin Khac
+                label(for="infoMore") Thông tin khác (năm)
                 input(
                     type="text"
                     class = "form-control"
@@ -77,7 +77,7 @@ block main
                     name = "infoMore"
                 ) 
             div(class = "form-group")
-                label(for="rate") Danh Gia
+                label(for="rate") Đánh giá
                 input(
                     type="text"
                     class = "form-control"
@@ -94,7 +94,7 @@ block main
                 )
 
             div(class = "form-group")
-                label(for="Showtimes") Thoi Luong Phim
+                label(for="Showtimes") Thời lượng phim
                 input(
                     type="number"
                     class = "form-control"
@@ -108,7 +108,7 @@ block main
                 class = "form-group"
                 upload-image
             )
-                label(for="image") Anh
+                label(for="image") Ảnh
                 input(
                     type="file"
                     class = "form-control-file"
@@ -126,13 +126,13 @@ block main
                     upload-image-preview
                 )
             div(class = "form-group")
-                label(for="position") Vi tri
+                label(for="position") Vị trí
                 input(
                     type="text"
                     class = "form-control"
                     id = "position"
                     name = "position"
-                    placeholder = "Tu Dong tang"
+                    placeholder = "Tự động tăng"
                     min = "1"
                 ) 
             div(class = "form-group form-check form-check-inline")
@@ -145,7 +145,7 @@ block main
                     value = "active"
                     checked
                 ) 
-                label(for = "statusActive" class = "form-check-label") Hoat Dong 
+                label(for = "statusActive" class = "form-check-label") Hoạt động 
 
             div(class = "form-group form-check form-check-inline")
                 
@@ -156,10 +156,10 @@ block main
                     name = "status"
                     value = "inactive"
                 ) 
-                label(for = "statusInActive" class = "form-check-label") Dung Hoat Dong 
+                label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
             
             div(class = "form-group")
                 button(
                     type = "submit"
                     class = "btn btn-primary"
-                ) Tao moi
+                ) Tạo

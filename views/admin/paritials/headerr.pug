@@ -30,7 +30,7 @@ body
                     i.bx.bxs-chevron-down.arrow
                 ul.sub-menu
                     li
-                        a.link_name(href='#') Category
+                        a.link_name(href='#') Phim
                     li
                         a(href='/admin/products') Danh sách phim
                     if(role.permissions.includes("products_create"))
@@ -47,11 +47,13 @@ body
                     i.bx.bxs-chevron-down.arrow
                 ul.sub-menu
                     li
-                        a.link_name(href='/admin/products-category') Category
-                    li
-                        a(href='/admin/products-category') Danh sách danh mục
-                    li
-                        a(href='/admin/products-category/create') Thêm danh mục
+                        a.link_name(href='/admin/products-category') Danh mục
+                    if(role.permissions.includes("products-category_views"))
+                        li
+                            a(href='/admin/products-category') Danh sách danh mục
+                    if(role.permissions.includes("products-category_create"))
+                        li
+                            a(href='/admin/products-category/create') Thêm danh mục
                     li
                         a(href='/admin/products/deleted') Danh mục đã xóa
         if(role.permissions.includes("roles_views"))
@@ -64,10 +66,12 @@ body
                 ul.sub-menu
                     li
                         a.link_name(href='/admin/roles') Nhóm quyền
-                    li
-                        a(href='/admin/roles') Danh sách nhóm quyền
-                    li
-                        a(href='/admin/roles/create') Thêm nhóm quyền
+                    if(role.permissions.includes("roles_views"))
+                        li
+                            a(href='/admin/roles') Danh sách nhóm quyền
+                    if(role.permissions.includes("roles_create"))
+                        li
+                            a(href='/admin/roles/create') Thêm nhóm quyền
                     li
                         a(href='/admin/products/deleted') Nhóm quyền đã xóa
         if(role.permissions.includes("roles_permissions"))
@@ -88,10 +92,12 @@ body
                 ul.sub-menu
                     li
                         a.link_name(href='/admin/accounts') Tài khoản
-                    li
-                        a(href='/admin/accounts') Danh sách tài khoản
-                    li
-                        a(href='/admin/accounts/create') Thêm tài khoản
+                    if(role.permissions.includes("accounts_views"))
+                        li
+                            a(href='/admin/accounts') Danh sách tài khoản
+                    if(role.permissions.includes("accounts_create"))
+                        li
+                            a(href='/admin/accounts/create') Thêm tài khoản
                     li
                         a(href='/admin/products/deleted') Tài khoản đã xóa
         //- li

@@ -2,6 +2,11 @@
 
 /* Css Table */
 
+#form-search .form-input{
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
 .table-movie{
     background-color: #86c8c8a6;
 }

@@ -5,39 +5,38 @@ include ../../mixins/alert.pug
 
 
 block main 
+    link(rel="stylesheet", href="/admin/css/login.css")
     +alert-error(5000)
     .container.my-5
         .row.justify-content-center
             .col-8
-                h1(class = "text-center") Đăng nhập
                 form(
                     action = `${prefixAdmin}/auth/login`
                     method = "POST"
+                    class = "d-flex justify-content-center"
                 )
-
-                    div(class = "form-group")
-                        label(for="email") Email 
-                        input(
-                            type="email"
-                            class = "form-control"
-                            id = "email"
-                            name = "email"
-                            required
-                        ) 
-                    div(class = "form-group")
-                        label(for="passWord") Mật khẩu
-                        input(
-                            type="password"
-                            class = "form-control"
-                            id = "passWord"
-                            name = "passWord"
-                            
-                        ) 
-                    
-                    
-                    div(class = "form-group")
-                        button(
-                            type = "submit"
-                            class = "btn btn-primary btn-block"
-                        ) Đăng nhập
+                    .login-box
+                        .login-header
+                            header Login
+                        .input-box
+                            input(
+                                class = "input-field"
+                                type='email' 
+                                placeholder='Email' 
+                                name = "email"
+                            )
+                        .input-box
+                            input(
+                                class = "input-field"
+                                type='password' 
+                                placeholder='Password'  
+                                name = "passWord"
+                            )
+                        .input-submit
+                            button(
+                                type = "submit"
+                                id = "submit"
+                                class = "submit-btn"
+                            )
+                            label(for='submit') Đăng nhập
         

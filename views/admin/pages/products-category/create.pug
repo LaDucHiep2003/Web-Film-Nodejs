@@ -5,7 +5,7 @@ include ../../mixins/select-tree.pug
 block main 
     if(role.permissions.includes("products-category_create"))
         +alert-error(5000)
-        h1(class = "mb-4") Them Moi Danh Muc Phim
+        h1(class = "mb-4") Thêm danh mục
 
         form(
             action= `/admin/products-category/create`
@@ -15,7 +15,7 @@ block main
         ) 
 
             div(class = "form-group")
-                label(for="name") Tên phim
+                label(for="name") Tên danh mục
                 input(
                     type="text"
                     class = "form-control"
@@ -23,20 +23,20 @@ block main
                     name = "name"
                 )  
             div(class = "form-group")
-                label(for="parent_id") Danh Muc Cha
+                label(for="parent_id") Danh mục
                 select(
                     name = "parent_id"
                     id = "parent_id"
                     class = "form-control"
                 )
-                    option(value = "") -----Chon danh muc cha-----
+                    option(value = "") -----Chọn danh mục cha-----
                     if(records)
                         +select-tree(records)
             div(
                 class = "form-group"
                 upload-image
             )
-                label(for="image") Anh
+                label(for="image") Ảnh
                 input(
                     type="file"
                     class = "form-control-file"
@@ -54,7 +54,7 @@ block main
                     upload-image-preview
                 )
             div(class = "form-group")
-                label(for="position") Vi tri
+                label(for="position") Vị trí
                 input(
                     type="text"
                     class = "form-control"
@@ -72,7 +72,7 @@ block main
                     name = "status"
                     value = "active"
                 ) 
-                label(for = "statusActive" class = "form-check-label") Hoat Dong 
+                label(for = "statusActive" class = "form-check-label") Hoạt động
 
             div(class = "form-group form-check form-check-inline")
                 
@@ -83,10 +83,10 @@ block main
                     name = "status"
                     value = "inactive"
                 ) 
-                label(for = "statusInActive" class = "form-check-label") Dung Hoat Dong 
+                label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
             
             div(class = "form-group")
                 button(
                     type = "submit"
                     class = "btn btn-primary"
-                ) Tao moi
+                ) Tạo mới

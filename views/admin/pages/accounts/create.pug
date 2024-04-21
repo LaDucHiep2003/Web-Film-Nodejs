@@ -5,7 +5,7 @@ include ../../mixins/alert.pug
 block main 
     if(role.permissions.includes("accounts_create"))
         +alert-error(5000)
-        h1(class = "mb-4") Them Moi Tai Khoan
+        h1(class = "mb-4") Thêm tài khoản
 
         form(
             action= `/admin/accounts/create`
@@ -14,7 +14,7 @@ block main
         ) 
 
             div(class = "form-group")
-                label(for="fullName") Ho Ten * 
+                label(for="fullName") Họ tên * 
                 input(
                     type="text"
                     class = "form-control"
@@ -32,7 +32,7 @@ block main
                     
                 ) 
             div(class = "form-group")
-                label(for="passWord") Mat Khau
+                label(for="passWord") Mặt khẩu
                 input(
                     type="password"
                     class = "form-control"
@@ -41,7 +41,7 @@ block main
                     
                 ) 
             div(class = "form-group")
-                label(for="phone") So dien thoai 
+                label(for="phone") Số điện thoại
                 input(
                     type="text"
                     class = "form-control"
@@ -54,7 +54,7 @@ block main
                 upload-image
             )
                 
-                label(for="avatar") Avata
+                label(for="avatar") Avatar
                 input(
                     type="file"
                     class = "form-control-file"
@@ -73,7 +73,7 @@ block main
                     upload-image-preview
                 )
             div(class = "form-group")
-                label(for = "role_id") Phan quyen 
+                label(for = "role_id") Phân quyền 
                 select(class = "form-control" id = "role_id" name = "role_id")
                     option(disabled) --Chon--
                     each item in roles
@@ -91,7 +91,7 @@ block main
                     value = "active"
                     checked
                 ) 
-                label(for = "statusActive" class = "form-check-label") Hoat Dong 
+                label(for = "statusActive" class = "form-check-label") Hoạt động
 
             div(class = "form-group form-check form-check-inline")
                 
@@ -102,11 +102,11 @@ block main
                     name = "status"
                     value = "inactive"
                 ) 
-                label(for = "statusInActive" class = "form-check-label") Dung Hoat Dong 
+                label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
             div(class = "form-group")
                 button(
                     type = "submit"
                     class = "btn btn-primary"
-                ) Tao moi 
+                ) Tạo mới
         
         
