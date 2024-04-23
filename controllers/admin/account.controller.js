@@ -112,3 +112,48 @@ module.exports.editPatch = async (req, res) => {
     }
    
 }
+
+module.exports.delete = async (req,res,next) =>{
+    const id = req.params.id
+
+    await Account.updateOne({ _id: id },
+        {
+            deleted : true,
+        })
+    req.flash('sucsess', `Xoa Thanh Cong Tai khoan`);
+    res.redirect("back")
+}
+
+module.exports.deleted = async (req,res,next) =>{
+
+    let find = {
+        deleted : true
+    }
+
+    const records = await Account.find(find).select("-passWord -token")
+
+    for (const record of records) {
+        const role = await Role.findOne({
+            _id : record.role_id,
+            deleted : false
+        })
+        record.role = role
+    }
+    res.render("admin/pages/accounts/deleted", {
+        pageTitle: "Da Xoa",
+        records : records
+    })
+}
+
+module.exports.stored = async (req, res) => {
+
+    const id = req.params.id
+
+    await Account.updateOne({ _id: id },
+        {
+            deleted : false,
+            deletedAt : new Date()
+        })
+    req.flash('sucsess', `Khoi Phuc Tai khoan thanh cong`);
+    res.redirect("back")
+}

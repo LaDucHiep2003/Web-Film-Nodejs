@@ -1,0 +1,52 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+
+block main 
+    h1(class = "mb-4") Thên tập mới
+    form(
+        action= `${prefixAdmin}/products/newEpisode/${movie.id}?_method=PATCH`
+        id = "form-create-product"
+        method = "POST"
+    ) 
+        div(class = "form-group")
+            label(for="name") Tên phim
+            input(
+                type="text"
+                class = "form-control"
+                id = "name"
+                name = "name"
+                value = movie.name
+            )   
+        div(class = "form-group")
+            label(for="newEp") Tập mới nhất
+            input(
+                type="number"
+                class = "form-control"
+                id = "newEp"
+                name = "newEp"
+                min = "0"
+                value = movie.newEp
+                requited
+            ) 
+        div(class = "form-group")
+            label(for="tap") Tập thêm mới
+            input(
+                type="number"
+                class = "form-control"
+                id = "tap"
+                name = "e"
+            ) 
+        div(class = "form-group")
+            label(for="videoId") Video
+            input(
+                type="text"
+                class = "form-control"
+                id = "videoId"
+                name = "v"
+            ) 
+        div(class = "form-group")
+            button(
+                type = "submit"
+                class = "btn btn-primary"
+            ) Tạo

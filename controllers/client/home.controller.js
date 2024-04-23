@@ -32,6 +32,7 @@ module.exports.index = async (req, res) => {
     objectPagination.totalPage = totalPage
 
     objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limitItem
+
     const movies = await Movie.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort({position : "desc"})
     const moviesHot = await MovieHot.find({})
 

@@ -3,7 +3,7 @@ extends ../../layouts/default.pug
 block main
     if(role.permissions.includes("accounts_views"))
 
-        h1 Danh sách tài khoản
+        h1 Tài khoản đã xóa
 
         .card.mb-3 
             .card-header Danh sách
@@ -56,23 +56,25 @@ block main
                                             ) Dừng hoạt động 
                                     td 
                                         a(
-                                            href = `${prefixAdmin}/products/detail/${item.id}`
+                                            href = `${prefixAdmin}/accounts/stored/${item.id}`
                                             class = "btn btn-secondary btn-sm"
                                         
-                                        ) Chi tiết 
-                                        a(
-                                            href = `${prefixAdmin}/accounts/edit/${item.id}`
-                                            class = "btn btn-warning btn-sm"
-                                        
-                                        ) Sửa 
+                                        ) Khôi phục 
                                         button(
                                             class = "btn btn-danger btn-sm ml-1"
                                             data-id = item.id
                                             button-delete
                                         ) Xóa 
-        form(
-            action = ""
-            method = "POST"
-            id = "form-delete-item"
-            data-path = "/admin/accounts/delete"
-        )
+    form(
+      action = ""
+      method = "POST"
+      id = "form-stored-item"
+      data-path = "/admin/products/stored"
+    )
+    form(
+        action = ""
+        method = "POST"
+        id = "form-delete-item"
+        data-path = "/admin/products/delete"
+    )
+    script(src="/admin/js/product.js") 

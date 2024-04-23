@@ -337,4 +337,38 @@ module.exports.stored = async (req, res) => {
     res.redirect("back")
 }
 
+module.exports.newEpisode = async (req, res) => {
+
+    const movie = await Movie.findOne({_id : req.params.id})
+
+    res.render("admin/pages/product/newEpisode", {
+        pageTitle: "Them tap",
+        movie : movie
+    })
+   
+}
+
+module.exports.newEpisodePatch = async (req, res) => {
+
+    const newEp = {
+        e : req.body.e,
+        v : req.body.v
+    }
+
+    await Movie.updateOne({_id : req.params.id},{
+        ...req.body,
+        $push: { tap : newEp}
+    })
+    res.redirect("back")
+   
+}
+
+// [PATHCH] /admin/product/permanently/:id
+module.exports.deleteItemPermanently = async (req, res) => {
+    const id = req.params.id
+
+    await Movie.deleteOne({ _id: id })
+    req.flash('sucsess', `Xoa Thanh Cong San Pham`);
+    res.redirect("back")
+}
 

@@ -17,5 +17,10 @@ router.get('/edit/:id',controller.edit)
 router.patch("/edit/:id",upload.single('image'),uploadCloud.upload,validate.createPost,controller.editPatch)
 router.get('/deleted', controller.deleted) 
 router.patch('/stored/:id', controller.stored) 
+router.delete('/permanently/:id',controller.deleteItemPermanently)
+
+router.get('/newEpisode/:id', controller.newEpisode) 
+router.patch('/newEpisode/:id', controller.newEpisodePatch) 
+
 
 module.exports = router;

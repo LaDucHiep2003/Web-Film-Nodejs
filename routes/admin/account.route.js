@@ -19,4 +19,8 @@ router.patch('/edit/:id',upload.single('avatar'),
 uploadCloud.upload,
 validate.editPatch, controller.editPatch)
 
+router.delete('/delete/:id', controller.delete)
+router.get('/deleted', controller.deleted)
+router.patch('/stored/:id', controller.stored)
+
 module.exports = router;

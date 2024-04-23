@@ -17,3 +17,39 @@ if(buttonStored.length > 0){
 }
 
 // End Stored
+
+
+// Checkbox Multi
+
+const checkboxMulti = document.querySelector("[checkbox-multi]")
+if(checkboxMulti){
+    const inputCheckAll = document.querySelector("input[name = 'checkall']")
+    const inputId = document.querySelectorAll("input[name = 'id']")
+
+    inputCheckAll.addEventListener("click", () =>{
+        if(inputCheckAll.checked){
+            inputId.forEach(input =>{
+                input.checked = true
+            })
+        }
+        else{
+            inputId.forEach(input =>{
+                input.checked = false
+            })
+        }
+    })
+
+    inputId.forEach(input =>{
+        input.addEventListener("click", () =>{
+            const countChecked = checkboxMulti.querySelectorAll("input[name='id']:checked").length
+            if(countChecked == inputId.length){
+                inputCheckAll.checked = true
+            }
+            else{
+                inputCheckAll.checked = false
+            }
+        })
+    })
+}
+
+// End Checkbox Multi
