@@ -13,7 +13,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #dfdfdf;
+    background: #8447c7a8;
 }
 .login-box{
     display: flex;

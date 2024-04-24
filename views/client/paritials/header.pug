@@ -26,12 +26,13 @@
                 //-                         .result-name 
                 //-                         .result-sub 
             .more
-                
-                i.fa-regular.fa-circle-user
-                
+                if(user)
+                    i.fa-regular.fa-circle-user
+                else 
+                    a(href='/login')
+                        i.fa-solid.fa-arrow-right-to-bracket
                 i.fa-solid.fa-bookmark
-                a(href='/login')
-                    i.fa-solid.fa-arrow-right-to-bracket
+                
             .clear
         .text-note
             | Lưu hoặc nhớ ngay link rút gọn 

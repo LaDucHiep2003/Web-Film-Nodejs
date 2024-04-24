@@ -2,6 +2,7 @@
 const Movie = require('../../models/movie.model')
 const MovieHot = require('../../models/movieHot.model')
 const account = require('../../models/account_user.model')
+const md5 = require('md5');
 
 
 module.exports.index = async (req, res) => {
@@ -55,13 +56,57 @@ module.exports.login = async (req, res) => {
 }
 
 module.exports.stored = async (req, res,next) => {
-    const formDate = req.body;
-    res.json(req.body)
-    // const acc = new account(formDate);
-    // acc
-    //     .save()
-    //     .then(() => res.redirect('/login'))
-    //     .catch(next);
+    
+    const userNameExits = await account.findOne({
+        userName : req.body.userName,
+        deleted : false
+    })
+
+    if(userNameExits){
+        // req.flash("error","tai khoan da ton tai")
+        res.redirect("back")
+    }
+    else{
+        req.body.passWord = md5(req.body.passWord)
+   
+        const record = new account(req.body)
+        await record.save()
+
+        res.redirect(`/`)
+    }
+}
+
+module.exports.success = async (req, res,next) => {
+    const userName = req.body.userName
+    const passWord = req.body.passWord
+    
+    const user = await account.findOne({
+        userName : userName,
+        deleted : false
+    })
+
+    if(!user){
+        req.flash("error","tai khoan khong ton tai")
+        res.redirect("back")
+        return
+    }
+
+    if(md5(passWord) != user.passWord){
+        req.flash("error","Mat khau khong chinh xac")
+        res.redirect("back")
+        return
+    }
+
+    if(user.status == "inactive"){
+        req.flash("error","Tai khoan da bi khoa")
+        res.redirect("back")
+        return
+    }
+
+    res.cookie("token", user.token)
+    res.redirect(`/`)
+ 
+    
 }
 
 

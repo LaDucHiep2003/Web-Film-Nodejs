@@ -1,13 +1,14 @@
 
+include ../../mixins/alert.pug
 #login
+  +alert-error(5000)
   link(rel="stylesheet", href="css/styte.css")
   link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css")
   link(rel="stylesheet", href="/js/login.js")
 
   form(
     id = "form-login"
-    action = "/stored"
-    method = "post"
+    method = "POST"
   )
     a(href='/')
       i.fa-solid.fa-house
@@ -34,6 +35,8 @@
         label(for='login_swich') Login
     .form_btns
       button#forgot_btn Reset Password
+      
+    script(src="/js/login.js") 
       
 
 

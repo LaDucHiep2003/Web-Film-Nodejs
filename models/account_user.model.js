@@ -1,12 +1,18 @@
 const { default: mongoose } = require("mongoose");
+const generate = require("../helpers/generate")
+
 
 const loginSchema = new mongoose.Schema(
     {
         userName : {type : String},
         passWord : {type : String},
-        success : {
-            type : Boolean,
-            default : true
+        token : {
+            type : String,
+            default : generate.generateRandomString(20)
+        },
+        status : {
+            type : String,
+            default : "active"
         },
         avata : {
             type : String,
@@ -16,6 +22,10 @@ const loginSchema = new mongoose.Schema(
         dateTime : {type :Date},
         accountName : {type : String},
         email : {type : String},
+        deleted : {
+            type : Boolean,
+            default : false
+        },
     },   
     {
         timestamps: true,
