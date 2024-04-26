@@ -1,6 +1,5 @@
 
 const Movie = require('../../models/movie.model')
-const MovieHot = require('../../models/movieHot.model')
 const account = require('../../models/account_user.model')
 const md5 = require('md5');
 
@@ -35,7 +34,11 @@ module.exports.index = async (req, res) => {
     objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limitItem
 
     const movies = await Movie.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort({position : "desc"})
-    const moviesHot = await MovieHot.find({})
+    const moviesHot = await Movie.find({
+        deleted : false,
+        status : "active",
+        featured : "1"
+    })
 
     res.render("client/pages/home/index",{
         pageTitle : "Trang chu",
@@ -72,7 +75,7 @@ module.exports.stored = async (req, res,next) => {
         const record = new account(req.body)
         await record.save()
 
-        res.redirect(`/`)
+        res.redirect(`back`)
     }
 }
 

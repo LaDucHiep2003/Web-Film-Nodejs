@@ -52,3 +52,12 @@ module.exports.createPost = async (req, res) => {
 
     res.redirect(`/admin/products-category`)
 }
+// [POST] /admin/product-category/delete
+
+module.exports.delete = async (req, res) => {
+    const id = req.params.id
+
+    await MovieCategory.updateOne({ _id: id }, { deleted : true})
+
+    res.redirect(`/admin/products-category`)
+}

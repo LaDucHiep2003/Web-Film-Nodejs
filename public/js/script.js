@@ -86,23 +86,14 @@ const app = {
             });
         });
 
-        // loginBtn.addEventListener('click',function(){
-        //     formLogin.method = 'Get';
-        //     form.action = '/success'
-        // })
-
-        // singnBtn.addEventListener('click',function(){
-        //     formLogin.method = 'Post'
-        //     form.action = '/store'
-        // })
-
-        // Pagination
         
     },
 
     start: function () {
         this.handleEvents();
     },
+
+
 };
 
 app.start();

@@ -27,7 +27,8 @@
                 //-                         .result-sub 
             .more
                 if(user)
-                    i.fa-regular.fa-circle-user
+                    a(href='/my-account')
+                        i.fa-regular.fa-circle-user
                 else 
                     a(href='/login')
                         i.fa-solid.fa-arrow-right-to-bracket
@@ -110,4 +111,5 @@
                                 a(href='/logout')
                                     i.fa-solid.fa-right-from-bracket.set-icon-info-user
                                     | Đăng xuất
-            .clear
+
+

@@ -11,5 +11,6 @@ const uploadCloud = require("../../middlewares/admin/uploadCloud.middleware")
 router.get('/', controller.index) 
 router.get('/create', controller.create) 
 router.post("/create",upload.single('image'),uploadCloud.upload,validate.createPost,controller.createPost)
+router.delete('/delete/:id', controller.delete) 
 
 module.exports = router;

@@ -1,0 +1,44 @@
+
+extends ../../layouts/default.pug
+
+block main
+    .container
+      .change-infomation
+        .container
+          .seclection-title
+            span Thông tin cá nhân
+          .container-infomation
+            .change-avata
+              img(src= user.avata)
+              .info-text
+                a(href='') Thay đổi avatar
+                p #{user.userName}
+            .changing-infomation
+              .container
+                form(action='')
+                  .form-update
+                    label(for='') Biệt danh :
+                    input(type='text', name='')
+                  .form-update
+                    label(for='') Châm ngôn :
+                    textarea(name='')
+                  .form-update
+                    label(for='') Ngày sinh :
+                    input(type='date', name='')
+                  .form-update
+                    label(for='') Id :
+                    input(type='text', name='')
+                  .form-update
+                    label(for='') Tên tài khoản :
+                    input(
+                        type='text'
+                        name=''
+                        value = user.accountName
+                    )
+                  .form-update
+                    label(for='') Email :
+                    input(type='text', name='')
+                  .form-update
+                    label(for='') Ngày đăng kú :
+                    input(type='text', name='')
+                  button(type='submit') Cập nhật

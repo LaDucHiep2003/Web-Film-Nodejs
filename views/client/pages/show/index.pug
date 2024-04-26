@@ -74,20 +74,22 @@ block main
             strong Xem phim #{movie.name} Vietsub #{movie.infoMore}:
             p !{movie.textContent}
         .comment
-          .form-comment
-            .avata-user
-              img(src='{{acc.avata}}' alt='')
-            .main-form
-              form(action='/phim/comment/{{firmupdate._id}}?_method=PUT')
-                input(type='text' placeholder='Tham Gia Bình Luận' name='comment')
-                .btn-send
-                  button Gửi
-          .login-to-comment
-            .login
-              .y
-                a(href='/login')
-                  i.fa-solid.fa-right-to-bracket
-                  span Đăng nhập để bình luận
+          if(user)
+            .form-comment
+              .avata-user
+                img(src='{{acc.avata}}' alt='')
+              .main-form
+                form(action='/phim/comment/{{firmupdate._id}}?_method=PUT')
+                  input(type='text' placeholder='Tham Gia Bình Luận' name='comment')
+                  .btn-send
+                    button Gửi
+          else
+            .login-to-comment
+              .login
+                .y
+                  a(href='/login')
+                    i.fa-solid.fa-right-to-bracket
+                    span Đăng nhập để bình luận
           .new-comment
             .sort-comment
               .total-comment

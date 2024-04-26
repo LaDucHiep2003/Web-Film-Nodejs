@@ -23,6 +23,26 @@ block main
                     name = "name"
                     value = movie.name
                 )   
+            div(class = "form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "featured1"
+                    name = "featured"
+                    value = "1"
+                    checked = (movie.featured == "1" ? true : false)
+                ) 
+            label(for = "feature1" class = "form-check-label") Phim hot
+            div(class = "form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "featured1"
+                    name = "featured"
+                    value = "0"
+                    checked = (movie.featured == "0" ? true : false)
+                ) 
+            label(for = "feature1" class = "form-check-label") Phim bình thường
             div(class = "form-group")
                 label(for="nameOther") Tên khác
                 input(

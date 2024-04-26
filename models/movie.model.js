@@ -9,6 +9,7 @@ const movieSchema = new mongoose.Schema(
             type : String,
             default : ""
         },
+        featured : String,
         image: { type: String },
         nameOther: { type: String },
         listCate: { type: String },

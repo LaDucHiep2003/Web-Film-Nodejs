@@ -32,6 +32,24 @@ block main
                     option(value = "") -----Chọn danh mục-----
                     if(category)
                         +select-tree(category)
+            div(class = "form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "featured1"
+                    name = "featured"
+                    value = "1"
+                ) 
+            label(for = "feature1" class = "form-check-label") Phim hot
+            div(class = "form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "featured1"
+                    name = "featured"
+                    value = "0"
+                ) 
+            label(for = "feature1" class = "form-check-label") Phim bình thường
             div(class = "form-group")
                 label(for="nameOther") Tên khác
                 input(
