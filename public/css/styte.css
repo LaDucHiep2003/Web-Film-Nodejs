@@ -139,7 +139,8 @@
 
 #header .more .fa-bookmark,
 #header .more .fa-arrow-right-to-bracket,
-#header .more .fa-circle-user {
+#header .more .fa-circle-user,
+#header .more .fa-right-from-bracket {
     cursor: pointer;
     float: right;
     padding: 8px 15px;

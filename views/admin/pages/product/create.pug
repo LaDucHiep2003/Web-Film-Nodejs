@@ -102,6 +102,7 @@ block main
                     id = "rate"
                     name = "rate"
                 )
+
             div(class = "form-group")
                 label(for="backgound") Background
                 input(
@@ -135,9 +136,11 @@ block main
                     accept = "image/*"
                     upload-image-input
                 ) 
-                button(
+                div(
                     class = "btn-cencel-upload hidden"
-                    cencel-upload) X
+                    style = "padding : 5px"
+                    cencel-upload
+                ) X
                 img(
                     src=""
                     class = "image-preview"

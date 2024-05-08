@@ -29,10 +29,13 @@
                 if(user)
                     a(href='/my-account')
                         i.fa-regular.fa-circle-user
+                    a(href='/logout')
+                        i(class = "fa-solid fa-right-from-bracket")
                 else 
                     a(href='/login')
                         i.fa-solid.fa-arrow-right-to-bracket
                 i.fa-solid.fa-bookmark
+                
                 
             .clear
         .text-note

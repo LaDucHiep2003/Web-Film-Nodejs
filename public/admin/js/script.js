@@ -87,26 +87,27 @@ if(buttonDelete.length > 0){
 }
 
 // End Delete Item
+// Restore Item
 
-// Delete Item permanently
-
-if(buttonDelete.length > 0){
-    const formDeleteItem = document.querySelector("#form-delete-item")
+const buttonRestore = document.querySelectorAll("[button-restore]")
+if(buttonRestore.length > 0){
+    const formRestoreItem = document.querySelector("#form-restore-item")
     const path = formDeleteItem.getAttribute("data-path")
-    buttonDelete.forEach(button =>{
+    buttonRestore.forEach(button =>{
         button.addEventListener("click", () =>{
-            const isConfirm = confirm("Bạn có muốn xóa vĩnh viễn phim này")
+            const isConfirm = confirm("Bạn có muốn xóa khôi phục bộ phim này")
             if(isConfirm){
                 const id = button.getAttribute("data-id")
-                const action = `${path}/${id}?_method=DELETE`
-                formDeleteItem.action = action
-                formDeleteItem.submit()
+                const action = `${path}/${id}?_method=PATCH`
+                formRestoreItem.action = action
+                formRestoreItem.submit()
             }
         })
     })
 }
 
-// End Delete Item
+// End reStore Item
+
 
 // Form change multi
 const formChangeMulti = document.querySelector("[form-change-multi]")
@@ -200,6 +201,34 @@ if(uploadImage){
 
 
 // End Upload Image
+
+
+// Upload Backround
+const uploadBackround = document.querySelector("[upload-background]")
+
+const cencelBackround = document.querySelector("[cencel-upload-backgound]")
+if(uploadImage){
+    const uploadBackgoundInput = document.querySelector("[upload-background-input]")
+    const uploadBackgroundPreview = document.querySelector("[upload-background-preview]")
+
+    uploadBackgoundInput.addEventListener("change", (e) =>{
+        const file = e.target.files[0]
+        if(file){
+            uploadBackgroundPreview.src = URL.createObjectURL(file)
+        }
+        cencelBackround.classList.remove("hidden")
+    })
+
+    cencelBackround.addEventListener("click", () =>{
+        uploadBackgoundInput.value= "" 
+        uploadBackgroundPreview.src = ""
+        cencelBackround.classList.add("hidden")
+    })
+}
+
+
+
+// End Upload Backround
 // Sort
 const sort = document.querySelector("[sort]")
 if(sort){

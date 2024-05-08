@@ -74,26 +74,14 @@ block main
 
 
       .page-btn
-        if(pagination.currentPage > 1)
-          .page
-            i(
-              class = "fa-solid fa-angle-left"
-              button-pagination = pagination.currentPage - 1
-            )
+
         
-        - for(var i = 1;i <= 3;i++)
+        - for(var i = 1;i <= pagination.totalPage;i++)
             div(
               class = `page ${pagination.currentPage == i ? "active-page" : ""}`
               button-pagination = i
             ) #{i}
         
-        
-        if(pagination.currentPage < pagination.totalPage)
-          .page
-            i(
-              class = "fa-solid fa-chevron-right"
-              button-pagination = pagination.currentPage + 1
-            )
-        
+      
 
 

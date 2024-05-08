@@ -112,13 +112,13 @@ block main
                       td  #{item.infoMore}
                       td 
                           button(
-                            button-stored
+                            button-restore
                             data-id = item.id
                           ) Khôi Phục 
                              
                           button(
                             data-id = item.id
-                            button-delete
+                            button-delete-permanently
                           ) Xóa
     .page-btn
         if(pagination.currentPage > 1)
@@ -145,8 +145,8 @@ block main
     form(
       action = ""
       method = "POST"
-      id = "form-stored-item"
-      data-path = "/admin/products/stored"
+      id = "form-restore-item"
+      data-path = "/admin/products/restore"
     )
     form(
         action = ""
@@ -154,5 +154,20 @@ block main
         id = "form-delete-item"
         data-path = "/admin/products/permanently"
     )
-    script(src="/admin/js/product.js") 
-
+    script. 
+        const buttonDelete = document.querySelectorAll("[button-delete-permanently]")
+        if(buttonDelete.length > 0){
+          const formDeleteItem = document.querySelector("#form-delete-item")
+          const path = formDeleteItem.getAttribute("data-path")
+          buttonDelete.forEach(button =>{
+              button.addEventListener("click", () =>{
+                  const isConfirm = confirm("Bạn có muốn xóa vĩnh viễn phim này")
+                  if(isConfirm){
+                      const id = button.getAttribute("data-id")
+                      const action = `${path}/${id}?_method=DELETE`
+                      formDeleteItem.action = action
+                      formDeleteItem.submit()
+                  }
+              })
+          })
+      }

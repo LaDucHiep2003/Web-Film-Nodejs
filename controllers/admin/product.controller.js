@@ -104,7 +104,7 @@ module.exports.index = async (req, res) => {
 
 
     res.render("admin/pages/product/index", {
-        pageTitle: "Trang Quan Ly",
+        pageTitle: "Trang quản lý",
         movies: movies,
         filterStatus: filterStatus,
         keywork: keywork,
@@ -125,7 +125,7 @@ module.exports.changeMulti = async (req, res) => {
     switch (type) {
         case "delete-all":
             await Movie.updateMany({_id : {$in : ids}},{deleted : true, deletedAt : new Date()} )
-            req.flash('sucsess', `Xoa Thanh Cong ${ids.length} San Pham`);
+            req.flash('sucsess', `Xóa thành công ${ids.length} bộ phim`);
             break;
         case "change-position":
             for(const item of ids){
@@ -136,7 +136,7 @@ module.exports.changeMulti = async (req, res) => {
                     $push: { updatedBy : updatedBy}
                 })
             }
-            req.flash('sucsess', `Cap Nhat Trang Thai Thanh Cong ${ids.length} San Pham`);
+            req.flash('sucsess', `Cập nhật trạng thái thành công ${ids.length} bộ phim`);
             
             break;
         default:
@@ -156,7 +156,7 @@ module.exports.deleteItem = async (req, res) => {
                 deletedAt : new Date()
             } 
         })
-    req.flash('sucsess', `Xoa Thanh Cong San Pham`);
+    req.flash('sucsess', `Xóa thành công bộ phim`);
     res.redirect("back")
 }
 
@@ -170,9 +170,9 @@ module.exports.create = async (req, res) => {
     const newCategory = createTree.tree(category)
 
     res.render("admin/pages/product/create", {
-        pageTitle: "Trang Them Moi",
+        pageTitle: "Trang thêm mới phim",
         category : newCategory
-    })
+    })     
 }
 
 // [POST] /admin/product/create
@@ -201,10 +201,11 @@ module.exports.edit = async (req, res) => {
     }
     const movie = await Movie.findOne(find)
     res.render("admin/pages/product/edit", {
-        pageTitle: "Trang Chinh Sua",
+        pageTitle: "Trang chỉnh sửa",
         movie : movie
     })
 }
+
 
 module.exports.editPatch = async (req, res) => {
 
@@ -219,7 +220,7 @@ module.exports.editPatch = async (req, res) => {
             ...req.body,
             $push: { updatedBy : updatedBy}
         })
-        req.flash('sucsess', 'Cap Nhat Thanh Cong');
+        req.flash('sucsess', 'Cập nhật thành công thông tin');
     } catch (error) {
         
     }
@@ -316,7 +317,7 @@ module.exports.deleted = async (req, res) => {
 
 
     res.render("admin/pages/product/deleted", {
-        pageTitle: "Da Xoa",
+        pageTitle: "Phim đã xóa",
         movies: movies,
         filterStatus: filterStatus,
         keywork: keywork,
@@ -333,7 +334,7 @@ module.exports.stored = async (req, res) => {
             deleted : false,
             deletedAt : new Date()
         })
-    req.flash('sucsess', `Xoa Khoi Phuc San Pham`);
+    req.flash('sucsess', `Khôi phục thành công phim`);
     res.redirect("back")
 }
 
@@ -342,7 +343,7 @@ module.exports.newEpisode = async (req, res) => {
     const movie = await Movie.findOne({_id : req.params.id})
 
     res.render("admin/pages/product/newEpisode", {
-        pageTitle: "Them tap",
+        pageTitle: "Thêm tập phim mới",
         movie : movie
     })
    
@@ -368,7 +369,7 @@ module.exports.deleteItemPermanently = async (req, res) => {
     const id = req.params.id
 
     await Movie.deleteOne({ _id: id })
-    req.flash('sucsess', `Xoa Thanh Cong San Pham`);
+    req.flash('sucsess', `Xoá thànhb công sản phẩm`);
     res.redirect("back")
 }
 

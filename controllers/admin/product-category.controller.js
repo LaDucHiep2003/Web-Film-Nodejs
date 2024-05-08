@@ -61,3 +61,18 @@ module.exports.delete = async (req, res) => {
 
     res.redirect(`/admin/products-category`)
 }
+
+// [Get] /admin/product-category/edit/:id
+
+module.exports.edit = async (req, res) => {
+
+    const movie = await MovieCategory.findOne({ 
+        _id : req.params.id,
+        deleted : false
+    })
+
+    res.render("admin/pages/products-category/edit",{
+        pageTitle : "Chỉnh sửa danh mục phim",
+        movie : movie
+    })
+}

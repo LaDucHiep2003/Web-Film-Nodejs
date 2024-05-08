@@ -12,5 +12,6 @@ router.get('/', controller.index)
 router.get('/create', controller.create) 
 router.post("/create",upload.single('image'),uploadCloud.upload,validate.createPost,controller.createPost)
 router.delete('/delete/:id', controller.delete) 
+router.get('/edit/:id', controller.edit) 
 
 module.exports = router;

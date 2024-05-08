@@ -1,86 +1,71 @@
-
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
 
 block main 
-    if(role.permissions.includes("accounts_create"))
+    if(role.permissions.includes("products-category_edit"))
         +alert-error(5000)
-        h1(class = "mb-4") Thêm tài khoản
+        h1(class = "mb-4") Thêm danh mục
 
         form(
-            action= `/admin/accounts/create`
+            action= `/admin/products-category/edit/${movie.id}`, 
+            id = "form-create-product"
             enctype="multipart/form-data"
             method = "POST"
         ) 
 
             div(class = "form-group")
-                label(for="fullName") Họ tên * 
+                label(for="name") Tên danh mục
                 input(
                     type="text"
                     class = "form-control"
-                    id = "fullName"
-                    name = "fullName"
-                    
-                ) 
+                    id = "name"
+                    name = "name"
+                    value = movie.name
+                )  
             div(class = "form-group")
-                label(for="email") Email * 
-                input(
-                    type="email"
+                label(for="parent_id") Danh mục
+                select(
+                    name = "parent_id"
+                    id = "parent_id"
                     class = "form-control"
-                    id = "email"
-                    name = "email"
-    
-                ) 
-            div(class = "form-group")
-                label(for="passWord") Mặt khẩu
-                input(
-                    type="password"
-                    class = "form-control"
-                    id = "passWord"
-                    name = "passWord"
                     
-                ) 
-            div(class = "form-group")
-                label(for="phone") Số điện thoại
-                input(
-                    type="text"
-                    class = "form-control"
-                    id = "phone"
-                    name = "phone"
-                    
-                ) 
+                )
+                    option(value = "") -----Chọn danh mục cha-----
+                    if(records)
+                        +select-tree(records)
             div(
                 class = "form-group"
                 upload-image
             )
-                
-                label(for="avatar") Avatar
+                label(for="image") Ảnh
                 input(
                     type="file"
                     class = "form-control-file"
-                    id = "avatar"
-                    name = "avatar"
+                    id = "image"
+                    name = "image"
                     accept = "image/*"
                     upload-image-input
                 ) 
                 button(
                     class = "btn-cencel-upload hidden"
                     cencel-upload) X
-                
                 img(
-                    src=""
+                    src= movie.image
                     class = "image-preview"
                     upload-image-preview
                 )
             div(class = "form-group")
-                label(for = "role_id") Phân quyền 
-                select(class = "form-control" id = "role_id" name = "role_id")
-                    option(disabled) --Chon--
-                    each item in roles
-                        option(value = item.id) #{item.name}
-
-
-
+                label(for="position") Vị trí
+                input(
+                    type="text"
+                    class = "form-control"
+                    id = "position"
+                    name = "position"
+                    placeholder = "Tu Dong tang"
+                    min = "1"
+                    value = movie.position
+                ) 
             div(class = "form-group form-check form-check-inline")
                 
                 input(
@@ -89,7 +74,7 @@ block main
                     id = "statusActive"
                     name = "status"
                     value = "active"
-                    checked
+                    checked = (movie.status == "active" ? true : false)
                 ) 
                 label(for = "statusActive" class = "form-check-label") Hoạt động
 
@@ -101,12 +86,12 @@ block main
                     id = "statusInActive"
                     name = "status"
                     value = "inactive"
+                    checked = (movie.status == "inactive" ? true : false)
                 ) 
                 label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
+            
             div(class = "form-group")
                 button(
                     type = "submit"
                     class = "btn btn-primary"
                 ) Tạo mới
-        
-        

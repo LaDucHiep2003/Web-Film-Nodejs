@@ -112,6 +112,11 @@ module.exports.success = async (req, res,next) => {
     
 }
 
+module.exports.logout = async (req, res) => {
+    res.clearCookie("token")
+
+    res.redirect(`/`)
+}
 
 
 
