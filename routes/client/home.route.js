@@ -8,6 +8,7 @@ router.get('/', controller.index)
 router.get('/login',controller.login)
 router.post('/success',controller.success) 
 router.post('/stored',controller.stored)  
-router.get('/logout',controller.logout)           
+router.get('/logout',controller.logout) 
+router.get('/:slugCategory',controller.category)          
 
 module.exports = router;

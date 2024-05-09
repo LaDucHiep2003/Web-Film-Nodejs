@@ -2,7 +2,8 @@
 const Movie = require('../../models/movie.model')
 const account = require('../../models/account_user.model')
 const md5 = require('md5');
-
+const MovieCategory = require("../../models/movie-category.model")
+const movieHelper = require("../../helpers/movieCategoryHelper")
 
 module.exports.index = async (req, res) => {
 
@@ -106,17 +107,40 @@ module.exports.success = async (req, res,next) => {
         return
     }
 
-    res.cookie("token", user.token)
+    res.cookie("tokenUser", user.tokenUser)
     res.redirect(`/`)
  
     
 }
 
 module.exports.logout = async (req, res) => {
-    res.clearCookie("token")
+    res.clearCookie("tokenUser")
 
     res.redirect(`/`)
 }
 
 
 
+module.exports.category = async (req, res) => {
+
+    const category = await MovieCategory.findOne({
+        slug : req.params.slugCategory,
+        status : "active",
+        deleted : false
+    })
+    const lishSubCategory = await movieHelper.getSubCategory(category.id)
+
+    const lishSubCategoryId = lishSubCategory.map(item => item.id)
+    const movies = await Movie.find({
+        movie_category_id : {$in : [category.id, ...lishSubCategoryId]},
+        deleted : false
+    }).sort({position : "desc"})
+
+    const listCate = category.name
+    res.render("client/pages/home/categoryMovie",{
+        pageTitle : "Trang chủ",
+        movieCategory : movies,
+        listCate : listCate
+    })
+
+}

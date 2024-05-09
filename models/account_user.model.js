@@ -6,7 +6,7 @@ const loginSchema = new mongoose.Schema(
     {
         userName : {type : String},
         passWord : {type : String},
-        token : {
+        tokenUser : {
             type : String,
             default : generate.generateRandomString(20)
         },

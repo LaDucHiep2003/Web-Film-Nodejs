@@ -1,0 +1,18 @@
+extends ../../layouts/default.pug
+
+block main
+block main
+  #content
+    .container
+        .seclection-title
+            span #{listCate}
+        .container-new-firm.active-disable
+            each item in movieCategory
+                .new-firm
+                    a(href=`/phim/${item.slug}`)
+                        img.img-new-firm(src= item.image alt='')
+                        .info-new-firm
+                            .text-info-new-firm
+                            .name-img-new-firm #{item.name}
+                            .sub-name-img-new-firm #{item.nameOther}
+                    p Tập #{item.newEp}
