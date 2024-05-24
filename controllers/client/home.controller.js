@@ -42,7 +42,7 @@ module.exports.index = async (req, res) => {
     })
 
     res.render("client/pages/home/index",{
-        pageTitle : "Trang chu",
+        pageTitle : "Trang chủ",
         movies : movies,
         moviesHot : moviesHot,
         pagination : objectPagination,
@@ -55,7 +55,7 @@ module.exports.login = async (req, res) => {
 
 
     res.render("client/pages/home/login",{
-        pageTitle : "Trang Dang Nhap",
+        pageTitle : "Đăng nhập",
     })
 }
 
@@ -90,19 +90,19 @@ module.exports.success = async (req, res,next) => {
     })
 
     if(!user){
-        req.flash("error","tai khoan khong ton tai")
+        req.flash("error","Tài khoản đã tồn tại")
         res.redirect("back")
         return
     }
 
     if(md5(passWord) != user.passWord){
-        req.flash("error","Mat khau khong chinh xac")
+        req.flash("error","Mật khẩu không chính xác")
         res.redirect("back")
         return
     }
 
     if(user.status == "inactive"){
-        req.flash("error","Tai khoan da bi khoa")
+        req.flash("error","Tài khoản đã bị khóa")
         res.redirect("back")
         return
     }
@@ -122,6 +122,9 @@ module.exports.logout = async (req, res) => {
 
 
 module.exports.category = async (req, res) => {
+    if(req.params.slugCategory == "favicon.ico"){
+        return res.status(404).end();
+    }
 
     const category = await MovieCategory.findOne({
         slug : req.params.slugCategory,
@@ -129,7 +132,7 @@ module.exports.category = async (req, res) => {
         deleted : false
     })
     const lishSubCategory = await movieHelper.getSubCategory(category.id)
-
+    console.log(category);
     const lishSubCategoryId = lishSubCategory.map(item => item.id)
     const movies = await Movie.find({
         movie_category_id : {$in : [category.id, ...lishSubCategoryId]},

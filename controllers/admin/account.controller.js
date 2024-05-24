@@ -21,7 +21,7 @@ module.exports.index = async (req, res) => {
     }
     
     res.render("admin/pages/accounts/index",{
-        pageTitle : "Danh Sach Tai Khoan",
+        pageTitle : "Danh sách tài khoản",
         records : records 
     })
 }
@@ -35,7 +35,7 @@ module.exports.create = async (req, res) => {
     const roles = await Role.find(find)
    
     res.render("admin/pages/accounts/create",{
-        pageTitle : "Danh Sach Tai Khoan",
+        pageTitle : "Tạo tài khoản",
         roles : roles
     })
 }
@@ -48,7 +48,7 @@ module.exports.createPost = async (req, res) => {
     })
 
     if(emailExits){
-        req.flash("error","Email da ton tai")
+        req.flash("error","Email đã tồn tại")
         res.redirect("back")
     }
     else{
@@ -77,7 +77,7 @@ module.exports.edit = async (req, res) => {
         })
 
         res.render("admin/pages/accounts/edit",{
-            pageTitle : "Chinh sua Tai Khoan",
+            pageTitle : "Chỉnh sửa thông tin tài khoản",
             data : data,
             roles : roles
         })
@@ -97,7 +97,7 @@ module.exports.editPatch = async (req, res) => {
     })
 
     if(emailExits){
-        req.flash("error","Email da ton tai")
+        req.flash("error","Email đã tồn tại")
         res.redirect("back")
     }
     else{
@@ -120,7 +120,7 @@ module.exports.delete = async (req,res,next) =>{
         {
             deleted : true,
         })
-    req.flash('sucsess', `Xoa Thanh Cong Tai khoan`);
+    req.flash('sucsess', `Xóa thành công tài khoản`);
     res.redirect("back")
 }
 
@@ -140,7 +140,7 @@ module.exports.deleted = async (req,res,next) =>{
         record.role = role
     }
     res.render("admin/pages/accounts/deleted", {
-        pageTitle: "Da Xoa",
+        pageTitle: "Tài khoản đã xóa",
         records : records
     })
 }
@@ -154,6 +154,6 @@ module.exports.stored = async (req, res) => {
             deleted : false,
             deletedAt : new Date()
         })
-    req.flash('sucsess', `Khoi Phuc Tai khoan thanh cong`);
+    req.flash('sucsess', `Khôi phục thành công tài khoản`);
     res.redirect("back")
 }

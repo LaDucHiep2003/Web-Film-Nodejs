@@ -38,7 +38,7 @@
 
 .site-title {
     height: 45px;
-    background: url(https://res.cloudinary.com/dsxkwbfyq/image/upload/v1710855433/logo-2024-nek-1_af0zqv.png) no-repeat top left;
+    background: url(https://res.cloudinary.com/dsxkwbfyq/image/upload/v1715393412/Motphimlogo_r9giou.png) no-repeat top left;
     background-size: contain;
     text-indent: -9999px;
     position: relative;
@@ -665,6 +665,7 @@
     padding: 10px 0;
     font-size: 14px;
     line-height: 1.8;
+    height: 300px;
 }
 
 .review p {

@@ -5,7 +5,7 @@ include ../../mixins/select-tree.pug
 block main 
     if(role.permissions.includes("products_create"))
         +alert-error(5000)
-        h1(class = "mb-4") Thên phim
+        h1(class = "mb-4") Thêm phim mới
 
         form(
             action= `/admin/products/create`
@@ -113,7 +113,7 @@ block main
                 )
 
             div(class = "form-group")
-                label(for="Showtimes") Thời lượng phim
+                label(for="Showtimes") Ngày ra tập mới(chỉ điền số)
                 input(
                     type="number"
                     class = "form-control"

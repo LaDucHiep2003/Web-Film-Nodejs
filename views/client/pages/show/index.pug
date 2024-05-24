@@ -79,7 +79,10 @@ block main
               .avata-user
                 img(src='{{acc.avata}}' alt='')
               .main-form
-                form(action='/phim/comment/{{firmupdate._id}}?_method=PUT')
+                form(
+                  action= `/phim/comment/${movie.id}?_method=PUT`
+                  method='POST'
+                )
                   input(type='text' placeholder='Tham Gia Bình Luận' name='comment')
                   .btn-send
                     button Gửi
