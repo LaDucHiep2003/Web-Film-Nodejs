@@ -78,10 +78,10 @@ block main
           if(user)
             .form-comment
               .avata-user
-                img(src='{{acc.avata}}' alt='')
+                img(src= user.avata alt='')
               .main-form
                 form(
-                  action= `/phim/comment/${movie.id}?_method=PUT`
+                  action= `/phim/comment/${movie.id}`
                   method='POST'
                 )
                   input(type='text' placeholder='Tham Gia Bình Luận' name='comment')
@@ -105,17 +105,17 @@ block main
                 .choose-sort.disable
                   span.set-choose-sort Cũ nhất
                   span.set-choose-sort Phổ biến
-            //- if(movie.comments)
-            //-   .container-comment
-            //-     .main-comment
-            //-       .comment-top
-            //-         each item in movie.comments
-            //-           .avata-user
-            //-             if(item.avata)
-            //-               img(src= item.avata alt='')
-            //-           .text-comment
-            //-             .nameUser
-            //-               span #{item.user.userName}
-            //-             .content-comment
-            //-               p #{item.comment}
+            if(movie.comments)
+              .container-comment
+                .main-comment
+                  each item in movie.comments
+                    .comment-top
+                      .avata-user
+                        if(item.user.avata)
+                          img(src= item.user.avata alt='')
+                      .text-comment
+                        .nameUser
+                          span #{item.user.userName}
+                        .content-comment
+                          p #{item.comment}
                    

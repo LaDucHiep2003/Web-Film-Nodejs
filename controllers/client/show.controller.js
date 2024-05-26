@@ -6,17 +6,15 @@ module.exports.show = async (req, res) => {
 
     const slug = req.params.slug;
     const movie = await Movie.findOne({slug : slug})
-
-    console.log(slug);
-    // if(movie.comments){
-    //     for (const comment of movie.comments) {
-    //         const userId = comment.user_id
-    //         const user = await account.findOne({_id : userId})
-    //         if(user){
-    //             comment.user = user
-    //         }
-    //     }
-    // }
+    if(movie.comments){
+        for (const comment of movie.comments) {
+            const userId = comment.user_id
+            const user = await account.findOne({_id : userId})
+            if(user){
+                comment.user = user
+            }
+        }
+    }
     
     res.render("client/pages/show/index",{
         pageTitle : "Trang thông tin",
@@ -36,5 +34,17 @@ module.exports.watch = async (req, res) => {
         movie : movie,
         foundEpisode : foundEpisode[0]
     })
+}
+module.exports.comments = async (req, res) => {
+
+    const record = {
+        user_id : res.locals.user.id,
+        comment : req.body.comment
+    }
+    await Movie.updateOne({_id : req.params.movieId},{
+        ...req.body,
+        $push : {comments : record}
+    })
+    res.redirect("back")
 }
 

@@ -108,7 +108,7 @@ module.exports.success = async (req, res,next) => {
     }
 
     res.cookie("tokenUser", user.tokenUser)
-    res.redirect(`back`)
+    res.redirect(`/`)
 }
 
 module.exports.logout = async (req, res) => {

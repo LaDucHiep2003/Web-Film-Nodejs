@@ -156,7 +156,7 @@
     position: absolute;
     background-color: #1b2d3c;
     width: 150px;
-    z-index: 1;
+    z-index: 1000;
 }
 
 #nav {
@@ -222,6 +222,7 @@
 .firm-hot {
     width: 50%;
     position: relative;
+
 }
 
 .container-firm-hot .img-firm-hot {
@@ -1197,8 +1198,7 @@
 }
 
 .avata-user img {
-    width: 56px;
-    height: 56px;
+    height: 50px;
     max-width: 56px;
     border-radius: 100%;
     border: 1px solid #cccccc;
