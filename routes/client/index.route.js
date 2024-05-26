@@ -6,6 +6,6 @@ const middleWare = require("../../middlewares/client/login.middleware")
 
 module.exports = (app) =>{
     app.use('/',middleWare.requireAuth, homeRouters)
-    app.use('/phim',middleWare.requireAuth,showRouters)
+    app.use('/phim',showRouters)
     app.use('/my-account',middleWare.requireAuth, myAccountRouters)
 }

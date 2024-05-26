@@ -6,7 +6,8 @@ block main
     .container
       .container-infomation-firm
         .container-x
-          img.img-poster(src= movie.image)
+          if(movie.image)
+            img.img-poster(src= movie.image)
           .info-firm
             .name.set-child-info-firm
               .text-name.set-flex-left.col-padding-info-firm Tên
@@ -104,17 +105,17 @@ block main
                 .choose-sort.disable
                   span.set-choose-sort Cũ nhất
                   span.set-choose-sort Phổ biến
-            .container-comment
-              .main-comment
-                .comment-top
-                  .avata-user
-                    img(src='{{this.avata}}' alt='')
-                  .text-comment
-                    .nameUser
-                      span {{this.accountName}}
-                    .content-comment
-                      p {{this.cmt}}
-                    .like-comment
-                      div
-                        i.fa-solid.fa-thumbs-up
-                        span 0
+            //- if(movie.comments)
+            //-   .container-comment
+            //-     .main-comment
+            //-       .comment-top
+            //-         each item in movie.comments
+            //-           .avata-user
+            //-             if(item.avata)
+            //-               img(src= item.avata alt='')
+            //-           .text-comment
+            //-             .nameUser
+            //-               span #{item.user.userName}
+            //-             .content-comment
+            //-               p #{item.comment}
+                   

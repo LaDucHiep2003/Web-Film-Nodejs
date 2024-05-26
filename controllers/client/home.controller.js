@@ -108,9 +108,7 @@ module.exports.success = async (req, res,next) => {
     }
 
     res.cookie("tokenUser", user.tokenUser)
-    res.redirect(`/`)
- 
-    
+    res.redirect(`back`)
 }
 
 module.exports.logout = async (req, res) => {
@@ -118,8 +116,6 @@ module.exports.logout = async (req, res) => {
 
     res.redirect(`/`)
 }
-
-
 
 module.exports.category = async (req, res) => {
     if(req.params.slugCategory == "favicon.ico"){

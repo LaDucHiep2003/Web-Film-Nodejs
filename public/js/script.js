@@ -26,7 +26,28 @@ if(buttonPagination){
     })
 }
 // End Pagination
-
+var swiper = new Swiper(".x", {
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  loop: true,
+  breakpoints: {
+    0: {
+      slidesPerView: 2, 
+    },
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
 // Form Search
 const formSearch = document.getElementById("search-form")
 if(formSearch){

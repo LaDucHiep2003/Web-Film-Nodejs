@@ -2,14 +2,16 @@
 extends ../../layouts/default.pug
 
 block main
+  div #{user}
   #content
     .container
-      .x
-        i.fa-solid.fa-angle-left.btn-next-left-firm
-        i.fa-solid.fa-angle-right.btn-next-left-firm
-        .container-firm-hot
+      div(class = "x swiper mySwiper")
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        .container-firm-hot.swiper-wrapper
             each item in moviesHot
-                .firm-hot
+                .firm-hot.swiper-slide
                     a(href= `/phim/${item.slug}`)
                         img.img-firm-hot(src= item.backgound alt='')
                     a(href=`/phim/${item.slug}`)
@@ -83,5 +85,4 @@ block main
             ) #{i}
         
       
-
 

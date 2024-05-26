@@ -51,6 +51,12 @@ const movieSchema = new mongoose.Schema(
             v : {type : String},
             }
         ],
+        comments :[
+            {
+                user_id : String,
+                comment : String
+            }
+        ]
     },
     {
         timestamps: true,

@@ -2,7 +2,7 @@ const { default: mongoose } = require("mongoose");
 const generate = require("../helpers/generate")
 
 
-const loginSchema = new mongoose.Schema(
+const AccountSchema = new mongoose.Schema(
     {
         userName : {type : String},
         passWord : {type : String},
@@ -32,6 +32,6 @@ const loginSchema = new mongoose.Schema(
     },
 )
 
-const Product = mongoose.model('account', loginSchema, 'account_users')
+const Account = mongoose.model('account', AccountSchema, 'account_users')
 
-module.exports = Product
+module.exports = Account

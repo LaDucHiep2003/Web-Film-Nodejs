@@ -117,25 +117,14 @@
     position: relative;
 }
 
-.x .btn-next-left-firm,
-.x .btn-next-right-firm {
+.x .swiper-button-next,
+.x .swiper-button-prev {
     color: #fff;
-    position: absolute;
-    top: 50%;
-    padding: 12px 8px;
     background-color: rgba(198, 43, 102, 0.7098039216);
     border-radius: 5px;
-    z-index: 1;
-    cursor: pointer;
+    z-index: 100;
 }
 
-.x .fa-angle-left {
-    left: 10px;
-}
-
-.x .fa-angle-right {
-    right: 10px;
-}
 
 #header .more .fa-bookmark,
 #header .more .fa-arrow-right-to-bracket,
@@ -227,15 +216,10 @@
 
 .container-firm-hot {
     margin-bottom: 10px;
-    display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
     position: relative;
 }
 
 .firm-hot {
-    flex-shrink: 0;
     width: 50%;
     position: relative;
 }
@@ -1480,3 +1464,10 @@ input[type="radio"],
 }
 
 /* End login */
+
+.mySwiper{
+    height: 49.5%;
+}
+
+
+/* Page Admin */
