@@ -115,6 +115,7 @@
 
 .x {
     position: relative;
+    margin-bottom: 10px;
 }
 
 .x .swiper-button-next,
@@ -227,7 +228,7 @@
 
 .container-firm-hot .img-firm-hot {
     width: 100%;
-    height: 310px;
+    height: 100%;
 }
 
 .container-firm-hot .info-firm {
@@ -1466,7 +1467,7 @@ input[type="radio"],
 /* End login */
 
 .mySwiper{
-    height: 49.5%;
+    height: 50%;
 }
 
 

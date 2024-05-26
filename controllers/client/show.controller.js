@@ -26,6 +26,15 @@ module.exports.watch = async (req, res) => {
 
     const slug = req.params.slug;
     const movie = await Movie.findOne({slug})
+    if(movie.comments){
+        for (const comment of movie.comments) {
+            const userId = comment.user_id
+            const user = await account.findOne({_id : userId})
+            if(user){
+                comment.user = user
+            }
+        }
+    }
     const { tap } = movie
     const x = req.params.newEp
     const foundEpisode = tap.filter((episode) => episode.e == x);
