@@ -128,7 +128,6 @@ module.exports.category = async (req, res) => {
         deleted : false
     })
     const lishSubCategory = await movieHelper.getSubCategory(category.id)
-    console.log(category);
     const lishSubCategoryId = lishSubCategory.map(item => item.id)
     const movies = await Movie.find({
         movie_category_id : {$in : [category.id, ...lishSubCategoryId]},

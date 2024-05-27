@@ -39,6 +39,7 @@ module.exports.watch = async (req, res) => {
     const { tap } = movie
     const x = req.params.newEp
     const foundEpisode = tap.filter((episode) => episode.e == x);
+    movie.currentEpi = parseInt(x)
     res.render("client/pages/watch/index",{
         pageTitle : "Xem phim",
         movie : movie,

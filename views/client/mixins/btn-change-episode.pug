@@ -1,13 +1,13 @@
 
 
 
-mixin changeEpisode()
+mixin changeEpisode(movie)
     .container-btn-change
-        a(href='')
+        a(href=`/phim/${movie.currentEpi - 1}`)
             .episode-prev.set-btn-next-ep
                 i.fa-solid.fa-backward.font-size-btn
                 span  Tập trước
-        a(href='')
+        a(href=`/phim/${movie.currentEpi + 1}`)
             .episode-next.set-btn-next-ep
                 span Tập tiếp theo
                 i.fa-solid.fa-forward.font-size-btn

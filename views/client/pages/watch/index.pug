@@ -51,7 +51,24 @@ block main
                     i.fa-solid.fa-up-right-and-down-left-from-center.set-ti-control-btn.set-btn-setting-control-video
                     i.fa-solid.fa-down-left-and-up-right-to-center.set-ti-control-btn.set-btn-setting-control-video.disable
           .change-episode
-            +changeEpisode()
+            .container-btn-change
+              if(movie.currentEpi > 1)
+                a(href=`/phim/${movie.slug}/${movie.currentEpi - 1}`)
+                    .episode-prev.set-btn-next-ep
+                        i.fa-solid.fa-backward.font-size-btn
+                        span  Tập trước
+              if(movie.newEp > movie.currentEpi)
+                a(href=`/phim/${movie.slug}/${movie.currentEpi + 1}`)
+                    .episode-next.set-btn-next-ep
+                        span Tập tiếp theo
+                        i.fa-solid.fa-forward.font-size-btn
+              .off-leed.set-btn-next-ep
+                  i.fa-solid.fa-sun.font-size-btn
+                  span Tắt đèn
+              a(href='')
+                  .erro.set-btn-next-ep
+                      i.fa-solid.fa-triangle-exclamation.font-size-btn
+                      span Báo lỗi
         .container-content-more
           section.container
             .seasons
