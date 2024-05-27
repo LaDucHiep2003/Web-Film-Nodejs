@@ -81,8 +81,9 @@ block main
                 img(src= user.avata alt='')
               .main-form
                 form(
-                  action= `/phim/comment/${movie.id}`
                   method='POST'
+                  id="commentForm"
+                  data-id = movie.id
                 )
                   input(type='text' placeholder='Tham Gia Bình Luận' name='comment')
                   .btn-send
@@ -107,7 +108,7 @@ block main
                   span.set-choose-sort Phổ biến
             if(movie.comments)
               .container-comment
-                .main-comment
+                div(class = "main-comment" id = "comment-section")
                   each item in movie.comments
                     .comment-top
                       .avata-user
@@ -118,4 +119,5 @@ block main
                           span #{item.user.userName}
                         .content-comment
                           p #{item.comment}
+  script(src="/js/comments.js") 
                    

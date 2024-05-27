@@ -1,6 +1,7 @@
 
 const Movie = require('../../models/movie.model')
-const account = require("../../models/account_user.model")
+const account = require("../../models/account_user.model");
+const Account = require('../../models/account_user.model');
 
 module.exports.show = async (req, res) => {
 
@@ -44,16 +45,29 @@ module.exports.watch = async (req, res) => {
         foundEpisode : foundEpisode[0]
     })
 }
-module.exports.comments = async (req, res) => {
 
+module.exports.comments = async (req, res) => {
+    const movieId = req.params.movieId
+    const { comment } = req.body;
+
+    if (!comment) {
+        return res.status(400).json({ message: 'Comment is required' });
+    }
+
+    
     const record = {
         user_id : res.locals.user.id,
-        comment : req.body.comment
+        comment : comment,
     }
-    await Movie.updateOne({_id : req.params.movieId},{
+    await Movie.updateOne({_id : movieId},{
         ...req.body,
         $push : {comments : record}
     })
-    res.redirect("back")
+
+    const comments = {
+        comment : comment,
+        user : res.locals.user
+    }
+    res.status(201).json(comments);
 }
 

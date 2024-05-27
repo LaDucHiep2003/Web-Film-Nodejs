@@ -28,8 +28,6 @@ module.exports.create = async (req, res) => {
     const records = await MovieCategory.find(find)
     const newRecords = createTree.tree(records)
 
-    console.log(newRecords);
-
     res.render("admin/pages/products-category/create",{
         pageTitle : "Tao Danh Muc Phim",
         records: newRecords
